@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Условие задачи</title>
+    <link rel="icon" href="fire_icon.jpeg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3e2a7a;
+            background: #4f3434;
+         
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px; /* Увеличил отступы для лучшего визуального разделения */
+            text-align: center; /* Выравнивание текста по центру */
+            position: relative;
+            display: flex;
+            flex-direction: column; /* Расположение элементов в столбец */
+        }
+        h1 {
+            color: aliceblue;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .task-details {
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .task-details h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #d4d4d4;
+        }
+        pr {
+            color:#0f19aa;
+        }
+        .user-login {
+            color: #fff;
+            font-weight: bold;
+            padding: 3px 10px;
+            background-color: #0f19aa;
+            border-radius: 50%;
+            margin-left:auto; /* Поместил элемент в самый верхний правый угол */
+            margin-top: 0px; /* Добавил небольшой отступ сверху */
+        }
+        .task {
+            margin-top: -30px;
+        }
+        .task-details pre {
+            margin: 0;
+            padding: 10px;
+            background-color: #fff1f1;
+            border-radius: 5px;
+            overflow-x: auto;
+            color: #fff;
+        }
+        .container pre {
+            margin: 0;
+            padding: 10px;
+            background-color: #715c5c;
+            border-radius: 5px;
+            overflow-x: auto;
+            color:#fff1f1
+        }
+        .container button {
+            margin-top: 5px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+        .menu {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+        .menu a:hover {
+            background: #140aac;
+            border-radius: 8px;
+            box-shadow: 0 0 5px #140aac,
+                        0 0 25px #140aac,
+                        0 0 50px #140aac,
+                        0 0 80px #140aac;
+        }
+        h2 {
+            color:#fff
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div id="userLogin" class="user-login"></div>
+
+        <h1 class = "task">Условие задачи</h1>
+    </header>
+        <div class="container">
+            <div class="menu">
+                <a href="compete.html">Соревнование</a>
+                <a href="index.html">Архив</a>
+                <a href="news.html">Новости</a>
+                <a href="my_submit.html" class="btn">Мои посылки</a>
+
+                <a onclick="logout()" class="btn">Выход</a> 
+        
+            </div>
+            <div class="task-details">
+                <h2>Задача 1</h2>
+                <pr class="task-details">
+                </div>
+                </pr>
+                    <h3>Пример: <br>
+                    <button onclick="copyToClipboard('input-data')">Копировать входные данные</button>
+                    <br>
+                    <pre id="input-data">4 5</pre>
+                    <button onclick="copyToClipboard('output-data')">Копировать выходные данные</button>
+                    <pre id="output-data">9</pre>
+                </h3>
+            <!-- </div> -->
+            <h1>Отправка файла</h1>
+            <form id="upload-form" enctype="multipart/form-data">
+                <input type="file" id="file-input" name="file"/>
+            <button type="submit" id="upload-button">Upload</button>
+            <div id="result"></div>
+        </form>
+    
+        <script>
+                document.getElementById('upload-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Предотвращаем стандартное поведение формы
+        document.getElementById('upload-button').disabled = true; // Отключаем кнопку "Upload"
+        document.getElementById('file-input').disabled = true; // Отключаем элемент выбора файла
+
+        var formData = new FormData();
+        formData.append('file', document.getElementById('file-input').files[0]);
+
+        // Отправка POST-запроса на сервер
+        fetch('http://192.168.43.57:5000/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Обработка ответа от сервера
+            alert(data.result);
+            document.getElementById('upload-button').disabled = false; // Активируем кнопку "Upload" после завершения запроса
+            document.getElementById('file-input').disabled = false; // Активируем элемент выбора файла
+            document.getElementById('file-input').value = ''; // Очищаем значение элемента выбора файла
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+            document.getElementById('result').textContent = 'Ошибка: ' + error.message;
+            document.getElementById('upload-button').disabled = false; // Активируем кнопку "Upload" после ошибки
+            document.getElementById('file-input').disabled = false; // Активируем элемент выбора файла
+        });
+    });
+
+        function copyToClipboard(id) {
+            var inputElement = document.getElementById(id);
+            var textToCopy = inputElement.textContent || inputElement.innerText;
+            
+            // Создаем временный textarea, вставляем в него текст и копируем его содержимое
+            var tempTextarea = document.createElement('textarea');
+            tempTextarea.value = textToCopy;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextarea);
+
+            alert('Текст скопирован в буфер обмена');
+            }
+
+            function logout() {
+            fetch('http://192.168.43.57:5000/logout')
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Ошибка при выполнении запроса');
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    window.location.href = "Autorezation.html";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        fetch('http://192.168.43.57:5000/get_login')
+            .then(response => response.json())
+            .then(data => {
+                const userLogin = document.getElementById('userLogin');
+                if (data.login == '') {
+                    window.location.href = "Autorezation.html";
+                }
+                else {
+                // alert('Добро пожаловат ' + data.login + '!');
+                userLogin.textContent = data.login;
+                }
+            })
+            .catch(error => {
+                alert('Добро пожаловат, к сожалению у вас плохое соединение к серверу, подключитесь и потом перезапустите сайт!');
+                userLogin.textContent = "Оффлайн";
+            });
+            fetch('http://192.168.43.57:5000/get_task_description1')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка при запросе данных');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const taskDetails = document.querySelector('.task-details');
+                const taskDescription = document.createElement('pre');
+                taskDescription.textContent = data.taskDescription;
+                taskDetails.appendChild(taskDescription);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            }); 
+           
+        </script>
+</body>
+</html>
