@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tajik Fire</title>
+    <link rel="icon" href="fire_icon.jpeg" type="image/jpeg">
+
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url('icon4.jpg');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        .user-login {
+            color: #fff;
+            font-weight: bold;
+            background-color: #0f19aa;
+            border-radius: 0%;
+            padding: 8px 12px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+            transition: transform 10s ease;
+        }
+
+        .user-login:hover {
+            transform: translateX(-800px);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(126, 1, 151, 0.982); /* Увеличиваем размытие тени */
+            color: #000000;
+            text-align: center;
+            background-color: rgba(41, 41, 41, 0.8); /* Пример значения с немного меньшей прозрачностью */
+
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: #111;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        header {
+            color: #fff;
+            padding: 0px;
+            text-align: center;
+            position: relative;
+        }
+
+        .news_point {
+            margin-top: 0;
+        }
+
+        .menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+        }
+
+        .menu-icon {
+            width: 30px;
+            height: 5px;
+            background-color: #fff;
+            margin: 6px 0;
+            border-radius: 5px;
+            transition: transform 0.4s, background-color 0.4s;
+        }
+
+        .menu-icon:hover {
+            background-color: #f1f1f1;
+        }
+
+        p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .news_font {
+            
+            border: 0;
+            padding: 0px;
+            font-size:large;
+            font-style: oblique;
+            font-weight:900;
+            color: #ffffffa5;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            max-width: 240px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 40px;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 15px;
+            color: #fff;
+            display: block;
+            transition: 0.8s ease;
+            border-radius: 10%;
+            margin: 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(243, 239, 239, 0.96);
+        }
+
+        .sidebar a::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 60%;
+            width: 0%;
+            height: 0%;
+            background-color: #7a71f7;
+            transition: width 0.4s ease, height 0.4s ease, transform 1.0s ease;
+            border-radius: 5%;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px #4e2db1, 0 0 15px #4e2db1, 0 0 15px #4e2db1, 0 0 15px #4e2db1;
+        }
+
+        .sidebar a:hover::before {
+            width: 120%;
+            height: 120%;
+            transform: translate(-50%, -50%);
+        }
+
+        .sidebar a:hover {
+            color: #100f0f;
+            transform: translateX(-20px) translateY(-10px);
+            transition: width 0.8s ease, height 0.8s ease, transform 1s ease;
+        }
+    </style>
+</head>
+<body>
+<div id="mySidebar" class="sidebar">
+    <a href="my_profile.html">Мой профиль</a>
+    <a href="compete.html">Соревнование</a>
+    <a href="index.html">Архив задач</a>
+    <a href="news.html">Новости</a>
+    <a href="my_submit.html">Мои посылки</a>
+    <a href="#" class="about-btn" onclick="openAbout()">О нас</a>
+
+    <a href="#" class="logout-btn" onclick="logout()">Выход</a>
+</div>
+
+<header>
+
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAbout()">&times;</span>
+            <h2>О нас</h2>
+            <p>Приветствуем вас в мире Tajik Fire - месте, где идеи превращаются в реальность, а навыки взлетают к новым высотам. Мы не просто платформа для соревнований, мы сообщество людей, которые разделяют страсть к программированию и стремятся к развитию.</p>
+            <img src="https://media.giphy.com/media/26u4njs0QZJof2Rhu/giphy.gif" alt="Coding Sticker" style="width: 100px; height: auto;">
+            <p>Наша миссия - вдохновлять и обучать, открывать новые горизонты и помогать вам достичь своих целей. Мы верим в силу знаний и в том, что каждый может стать лучше, если у него есть поддержка и ресурсы.</p>
+            <img src="https://media.giphy.com/media/1qXbl46DvyO4o8kNIr/giphy.gif" alt="Rocket Sticker" style="width: 100px; height: auto;">
+            <p>Если у вас есть идеи, вопросы или предложения, не стесняйтесь обращаться к нам. Мы здесь, чтобы помочь вам в каждом шаге вашего пути.</p>
+            <img src="https://media.giphy.com/media/9Lmb3UUlTDS8JOkL2I/giphy.gif" alt="Support Sticker" style="width: 100px; height: auto;">
+            <p>Присоединяйтесь к Tajik Fire - месту, где рождаются идеи и совершаются открытия!</p>
+                <ul>
+                <li>Телефон техподдержки: +992900085961</li>
+                <li>Электронная почта: gimron34@gmail.com</li>
+            </ul>
+            <!-- <p>Также, если вам хочется поддержать нас, вы можете это сделать, оплатив нам  через номер карты:</p>
+            <p>Номер карты для оплаты: **** **** **** **** (подставьте номер карты)</p> -->
+        </div>
+    </div>
+    <div class="menu" onclick="toggleNav()">
+        <div class="menu-icon"></div>
+        <div class="menu-icon"></div>
+        <div class="menu-icon"></div>
+    </div>
+    <div id="userLogin" class="user-login"></div>
+    <h1 class="news_point">Новости</h1>
+</header>
+<div class="container">
+        
+</div>
+<div class="container">
+    <h2>17.04.2024</h2>
+    <p class="news_font">Сайт уже почти на пути к успеху, Следим за новостями!!!</p>
+</div>
+<div class="container">
+    <h2>12.04.2024</h2>
+    <p class="news_font">О да! Теперь сайт Tajik Fire готов к работе. Давайте покажем класс!</p>
+</div>
+<script>
+    function closeAbout() {
+        const aboutModal = document.getElementById("aboutModal");
+        aboutModal.style.display = "none";
+    }
+
+    function openAbout() {
+        const aboutModal = document.getElementById("aboutModal");
+        aboutModal.style.display = "block";
+    }
+    function logout() {
+        fetch('http://192.168.43.57:5000/logout')
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Ошибка при выполнении запроса');
+                }
+            })
+            .then(data => {
+                console.log(data);
+                window.location.href = "Autorezation.html";
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    fetch('http://192.168.43.57:5000/get_login')
+        .then(response => response.json())
+        .then(data => {
+            const userLogin = document.getElementById('userLogin');
+            if (data.login == '') {
+                window.location.href = "Autorezation.html";
+            } else {
+                userLogin.textContent = data.login;
+            }
+        })
+        .catch(error => {
+            alert('Добро пожаловат, к сожалению у вас плохое соединение к серверу, подключитесь и потом перезапустите сайт!');
+            userLogin.textContent = "Оффлайн";
+        });
+
+    fetch('http://192.168.43.57:5000/get_news')
+        .then(response => response.json()) // Преобразуем ответ в формат JSON
+        .then(newsData => {
+            const newsContainer = document.querySelector('.container');
+            const newsItems = newsData; // Уже JSON-объект
+
+            newsItems.forEach(newsItem => {
+                const newsElement = document.createElement('pre'); // Используем тег <pre> для сохранения форматирования
+                newsElement.classList.add('news_font');
+                newsElement.textContent = newsItem; // Просто добавляем текст новости в элемент
+                newsContainer.appendChild(newsElement);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+    function toggleNav() {
+        const sidebar = document.getElementById("mySidebar");
+        sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+    }
+</script>
+</body>
+</html>

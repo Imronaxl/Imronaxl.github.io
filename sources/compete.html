@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Раздел в разработке</title>
+    <!-- Установка иконки -->
+    <link rel="icon" href="fire_icon.jpeg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111010;
+            text-align: center;
+        }
+        .compete_point {
+            margin-top: 0px;
+            color:aqua;
+        }
+        .user-login {
+            color: #fff;
+            font-weight: bold;
+            padding: 0px 10px;
+            background-color: #0f19aa;
+            border-radius: 70%;
+            margin-left:auto; /* Поместил элемент в самый верхний правый угол */
+            margin-top: 0px; /* Добавил небольшой отступ сверху */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+        .btn:last-child {
+            margin-right: 0;
+        }
+        .btn:hover {
+            background: #140aac;
+            border-radius: 8px;
+            box-shadow: 0 0 5px #140aac,
+                        0 0 25px #140aac,
+                        0 0 50px #140aac,
+                        0 0 80px #140aac;
+        }
+     
+    </style>
+</head>
+
+<body>
+     <header> 
+        <div id="userLogin" class="user-login"></div>
+        <h1 class="compete_point">Соревнование</h1>
+
+    </header>
+    <div class = "menu">
+        <a href="compete.html" class="btn">Соревнование</a>
+        <a href="index.html" class="btn">Архив</a>
+        <a href="news.html" class="btn">Новости</a>
+        <a href="my_submit.html" class="btn">Мои посылки</a>
+
+        <a onclick="logout()" class="btn">Выход</a> 
+
+    </div>
+    <div class="container">
+        <h1>Раздел находится в разработке</h1>
+        <p>Мы работаем над этим разделом. Пожалуйста, вернитесь позже.</p>
+    </div>   
+    <br>
+    <br>
+    <br>   
+    <img src="in_progress_icon.png" alt="Icon">
+    <script>
+        function logout() {
+            fetch('http://192.168.43.57:5000/logout')
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Ошибка при выполнении запроса');
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    window.location.href = "Autorezation.html";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        fetch('http://192.168.43.57:5000/get_login')
+            .then(response => response.json())
+            .then(data => {
+                const userLogin = document.getElementById('userLogin');
+                if (data.login == '') {
+                    window.location.href = "Autorezation.html";
+                }
+                else {
+                // alert('Добро пожаловат ' + data.login + '!');
+                userLogin.textContent = data.login;
+                }
+            })
+            .catch(error => {
+                alert('Добро пожаловат, к сожалению у вас плохое соединение к серверу, подключитесь и потом перезапустите сайт!');
+                userLogin.textContent = "Оффлайн";
+            });
+    </script>
+</body>
+</html>

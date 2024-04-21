@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tajik Fire</title>
+    <link rel="icon" href="fire_icon.jpeg" type="image/jpeg">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Изменим цвет фона */
+            text-align: center;
+        }
+        .user-login {
+            color: #fff;
+            font-weight: bold;
+            padding: 3px 10px;
+            background-color: #0f19aa;
+            border-radius: 50%;
+            margin-left:auto; /* Поместил элемент в самый верхний правый угол */
+            margin-top: 0px; /* Добавил небольшой отступ сверху */
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 10px;
+            background-color: #292929; /* Изменим цвет контейнера */
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Увеличим тень */
+            color: #fff; /* Изменим цвет текста */
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px; /* Увеличил отступы для лучшего визуального разделения */
+            text-align: center; /* Выравнивание текста по центру */
+            position: relative;
+            display: flex;
+            flex-direction: column; /* Расположение элементов в столбец */
+        }
+        .news_point {
+            margin-top: -40px;
+        }
+  
+
+        p {
+            color: #ccc; /* Изменим цвет текста параграфа */
+            margin-bottom: 20px;
+        }
+        .news_font {
+            border: 0; /* Уберем рамку */
+            padding: 0px; 
+            font-size: small; /* Увеличим размер текста */
+            color: #32cd32; /* Изменим цвет текста */
+        }
+        .btn {
+            display: inline-block;
+            background-color: #4682b4; /* Изменим цвет кнопок */
+            color: #fff;
+            background: #8969e8;
+            border-radius: 50px;
+            box-shadow: 0 0 5px #140aac,
+                        0 0 25px #1002de,
+                        0 0 50px #140aac,
+                        0 0 80px #8b8b96;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Добавим анимацию для плавного изменения цвета и размера */
+            margin-right: 10px;
+            border: none; /* Уберем границу */
+            cursor: pointer; /* Изменение курсора при наведении */
+        }
+        
+        .btn:last-child {
+            margin-right: 0;
+        }
+        .btn:hover {
+            background: #4169e1; /* Изменим цвет кнопки при наведении */
+            transform: scale(1.05); /* Увеличим размер кнопки при наведении */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="userLogin" class="user-login"></div>
+        <h1 class = "news_point">Новости</h1>
+
+        <div class="menu"> 
+            <a href="compete.html" class="btn">Соревнование</a>
+            <a href="index.html" class="btn">Архив</a>
+            <a href="news.html" class="btn">Новости</a>
+            <a href="my_submit.html" class="btn">Мои посылки</a>
+
+            <a onclick="logout()" class="btn">Выход</a> 
+
+        </div>
+    </header>
+    <div class="container">
+        
+    </div>
+    <div class="container">
+        <h6>17.04.2024</h6> 
+        <p class="news_font">
+            Сайт уже почти на пути к успеху, Следим за новостями!!!
+        </p>
+    </div>
+    <div class="container">
+        <h6>12.04.2024</h6>         
+        <p class="news_font">
+            О да! Теперь сайт Tajik Fire готов к работе. Давайте покажем класс!</p>
+    </div>
+    <script>
+        function logout() {
+            fetch('http://192.168.43.57:5000/logout')
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Ошибка при выполнении запроса');
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    window.location.href = "Autorezation.html";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        fetch('http://192.168.43.57:5000/get_login')
+            .then(response => response.json())
+            .then(data => {
+                const userLogin = document.getElementById('userLogin');
+                if (data.login == '') {
+                    window.location.href = "Autorezation.html";
+                }
+                else {
+                userLogin.textContent = data.login;
+                }
+            })
+            .catch(error => {
+                alert('Добро пожаловат, к сожалению у вас плохое соединение к серверу, подключитесь и потом перезапустите сайт!');
+                userLogin.textContent = "Оффлайн";
+            });
+            fetch('http://192.168.43.57:5000/get_news')
+            .then(response => response.json()) // Преобразуем ответ в формат JSON
+            .then(newsData => {
+                const newsContainer = document.querySelector('.container');
+                const newsItems = newsData; // Уже JSON-объект
+
+                newsItems.forEach(newsItem => {
+                    const newsElement = document.createElement('pre'); // Используем тег <pre> для сохранения форматирования
+                    newsElement.classList.add('news_font');
+                    newsElement.textContent = newsItem; // Просто добавляем текст новости в элемент
+                    newsContainer.appendChild(newsElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+</html>
