@@ -94,29 +94,38 @@
         .news_point {
             margin-top: 0;
         }
-
         .menu {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 2;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-        }
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                z-index: 2;
+                cursor: pointer;
+                width: 30px; /* Ширина меню */
+                height: 30px; /* Высота меню */
+            }
+            
+            .menu-icon {
+                width: 30px;
+                height: 5px;
+                background-color: #fff;
+                margin: 6px 0;
+                border-radius: 5px;
+                transition: transform 0.4s, background-color 0.4s; /* добавляем transition для transform и background-color */
+            }
+            
+            .menu-icon:hover {
+                background-color: #f1f1f1;
+            }
+            .menu-item {
+                display: flex;
+                align-items: center;
+            }
 
-        .menu-icon {
-            width: 30px;
-            height: 5px;
-            background-color: #fff;
-            margin: 6px 0;
-            border-radius: 5px;
-            transition: transform 0.4s, background-color 0.4s;
-        }
-
-        .menu-icon:hover {
-            background-color: #f1f1f1;
-        }
+            .menu-item img {
+                width: 20px; /* Устанавливаем желаемую ширину для иконки */
+                height: auto; /* Сохраняем пропорции */
+                margin-right: 10px; /* Расстояние между иконкой и текстом */
+            }
 
         p {
             color: #ccc;
@@ -190,16 +199,38 @@
     </style>
 </head>
 <body>
-<div id="mySidebar" class="sidebar">
-    <a href="my_profile.html">Мой профиль</a>
-    <a href="compete.html">Соревнование</a>
-    <a href="index.html">Архив задач</a>
-    <a href="news.html">Новости</a>
-    <a href="my_submit.html">Мои посылки</a>
-    <a href="#" class="about-btn" onclick="openAbout()">О нас</a>
+    <div id="mySidebar" class="sidebar">
+        <a href="my_profile.html" class="menu-item">
+            <img src="icon8.png" alt="Competition Icon">
+            Мой профиль
+        </a>
+        <a href="compete.html" class="menu-item">
+            <img src="icon7.png" alt="Competition Icon">
+            Соревнование
+        </a>
+        <a href="index.html" class="menu-item">
+            <img src="icon9.png" alt="Competition Icon">
+            Архив задач
+        </a>
+        <a href="news.html" class="menu-item">
+            <img src="icon10.png" alt="Competition Icon"  style="width: 28px; height: 28px;">
+            Новости
+        </a>
+        <a href="my_submit.html" class="menu-item">
+            <img src="icon11.png" alt="Competition Icon">
+            Мои посылки
+        </a>
+        <a href="#" class="about-btn menu-item" onclick="openAbout()">
+            <img src="icon15.png" alt="Competition Icon" style="width: 30px; height: 25px;">
 
-    <a href="#" class="logout-btn" onclick="logout()">Выход</a>
-</div>
+            О нас
+        </a>
+
+        <a href="#" class="logout-btn menu-item" onclick="logout()">
+            <img src="icon12.png" alt="Competition Icon">
+            Выход
+        </a>
+    </div>
 
 <header>
 
@@ -208,13 +239,13 @@
             <span class="close" onclick="closeAbout()">&times;</span>
             <h2>О нас</h2>
             <p>Приветствуем вас в мире Tajik Fire - месте, где идеи превращаются в реальность, а навыки взлетают к новым высотам. Мы не просто платформа для соревнований, мы сообщество людей, которые разделяют страсть к программированию и стремятся к развитию.</p>
-            <img src="https://media.giphy.com/media/26u4njs0QZJof2Rhu/giphy.gif" alt="Coding Sticker" style="width: 100px; height: auto;">
+            <img src="gif1.gif" alt="Coding Sticker" style="width: 100px; height: auto;">
             <p>Наша миссия - вдохновлять и обучать, открывать новые горизонты и помогать вам достичь своих целей. Мы верим в силу знаний и в том, что каждый может стать лучше, если у него есть поддержка и ресурсы.</p>
             <img src="https://media.giphy.com/media/1qXbl46DvyO4o8kNIr/giphy.gif" alt="Rocket Sticker" style="width: 100px; height: auto;">
             <p>Если у вас есть идеи, вопросы или предложения, не стесняйтесь обращаться к нам. Мы здесь, чтобы помочь вам в каждом шаге вашего пути.</p>
-            <img src="https://media.giphy.com/media/9Lmb3UUlTDS8JOkL2I/giphy.gif" alt="Support Sticker" style="width: 100px; height: auto;">
-            <p>Присоединяйтесь к Tajik Fire - месту, где рождаются идеи и совершаются открытия!</p>
-                <ul>
+            <img src="gif.gif" alt="Support Sticker" style="width: 250px; height: 250px;">
+            <p>Присоединяйтесь к Tajik Fire - месте, где рождаются идеи и совершаются открытия!</p>
+            <ul>
                 <li>Телефон техподдержки: +992900085961</li>
                 <li>Электронная почта: gimron34@gmail.com</li>
             </ul>
@@ -223,9 +254,8 @@
         </div>
     </div>
     <div class="menu" onclick="toggleNav()">
-        <div class="menu-icon"></div>
-        <div class="menu-icon"></div>
-        <div class="menu-icon"></div>
+        <img src="icon14.png" alt="Открыть меню" style="width: 40px; height: 40px;">
+        
     </div>
     <div id="userLogin" class="user-login"></div>
     <h1 class="news_point">Новости</h1>
