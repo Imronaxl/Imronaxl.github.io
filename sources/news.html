@@ -37,6 +37,7 @@
         }
 
         .container {
+
             max-width: 800px;
             margin: 40px auto;
             padding: 10px;
@@ -95,6 +96,7 @@
             margin-top: 0;
         }
         .menu {
+            
                 position: absolute;
                 top: 20px;
                 left: 20px;
@@ -143,6 +145,8 @@
         }
 
         .sidebar {
+            background-image: url('icon4.jpg');
+            background-size: cover;
             height: 100%;
             width: 0;
             max-width: 240px;
@@ -150,7 +154,6 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #111;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 40px;
@@ -163,13 +166,16 @@
             color: #fff;
             display: block;
             transition: 0.8s ease;
+            background-color: #26302c;
             border-radius: 10%;
             margin: 30px;
             text-align: center;
             position: relative;
             box-shadow: 0 2px 5px rgba(243, 239, 239, 0.96);
         }
-
+        .style_data {
+            color:#ffffff;
+        }
         .sidebar a::before {
             content: "";
             position: absolute;
@@ -195,6 +201,20 @@
             color: #100f0f;
             transform: translateX(-20px) translateY(-10px);
             transition: width 0.8s ease, height 0.8s ease, transform 1s ease;
+        }
+        @keyframes zastavka {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        75% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
         }
     </style>
 </head>
@@ -261,14 +281,14 @@
     <h1 class="news_point">Новости</h1>
 </header>
 <div class="container">
-        
+
 </div>
 <div class="container">
-    <h2>17.04.2024</h2>
+    <h2 class="style_data">17.04.2024</h2>
     <p class="news_font">Сайт уже почти на пути к успеху, Следим за новостями!!!</p>
 </div>
 <div class="container">
-    <h2>12.04.2024</h2>
+    <h2 class="style_data">12.04.2024</h2>
     <p class="news_font">О да! Теперь сайт Tajik Fire готов к работе. Давайте покажем класс!</p>
 </div>
 <script>

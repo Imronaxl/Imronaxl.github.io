@@ -9,7 +9,7 @@
     <style>
          body {
             font-family: 'Times New Roman', Times, serif;
-            background-image: url('icon2.jpg');
+            background-image: url('icon18.jpg');
             background-size: cover; 
             margin: 0;
             padding: 0;
@@ -58,7 +58,8 @@
         }
 
         .sidebar {
-            
+            background-color: rgba(17, 17, 17, 0.0); /* Значение альфа задает прозрачность, 0.8 - это 80% непрозрачности */
+
             height: 100%;
             width: 0;
             max-width: 240px;
@@ -66,7 +67,6 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #111;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
@@ -77,6 +77,8 @@
             font-size: 15px;
             color: #fff;
             display: block;
+            background-color: rgba(0, 0, 0, 0.85); /* Значение альфа задает прозрачность, 0.8 - это 80% непрозрачности */
+
             transition: 0.8s ease;
             border-radius: 10%;
             margin: 30px; /* Уменьшим отступ для более компактного вида */
@@ -178,7 +180,7 @@
             transform: translateX(-800px); 
             
         }   
-
+        
         .container {
             max-width: 800px;
             margin: 30px auto;
@@ -215,6 +217,20 @@
             box-shadow: 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8;
 
             transform: scale(1.05);
+        }
+        @keyframes zastavka {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        75% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
         }
     </style>
 </head>
@@ -280,13 +296,11 @@
     <div id="userLogin" class="user-login"></div>
     <h1 class="compete_point">Соревнование</h1>
     <div class="container">
-        <h1>Раздел находится в разработке</h1>
-        <h3 style="color:rgb(33, 4, 4)">Мы работаем над этим разделом. Пожалуйста, вернитесь позже.</h3>
+        <h1 style="color:#f1f1f1">Раздел находится в разработке</h1>
+        <h3 style="color:rgb(255, 255, 255)">Мы работаем над этим разделом. Пожалуйста, вернитесь позже!!!.</h3>
     </div>   
-    <br>
-    <br>
-    <br>   
-    <img src="in_progress_icon.png" alt="Icon">
+
+    <img src="in_progress_icon.png" style="position: fixed; bottom: 20px; left: 20px; width: 170px; height: auto; animation: zastavka 5s infinite;" alt="Icon">
     <script>
          function closeAbout() {
             const aboutModal = document.getElementById("aboutModal");

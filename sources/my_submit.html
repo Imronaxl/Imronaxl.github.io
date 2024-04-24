@@ -9,7 +9,7 @@
     <style>
        body {
             font-family: 'Times New Roman', Times, serif;
-            background-image: url('icon2.jpg');
+            background-image: url('icon19.jpg');
             background-size: cover; 
             margin: 0;
             padding: 0;
@@ -59,7 +59,6 @@
             cursor: pointer;
         }
         .sidebar {
-            
             height: 100%;
             width: 0;
             max-width: 240px;
@@ -67,11 +66,12 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #111;
+            background-color: rgba(17, 17, 17, 0.5); /* Здесь задаем цвет с прозрачностью */
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
         }
+
         .sidebar a {
             padding: 10px 15px;
             text-decoration: none;
@@ -94,12 +94,12 @@
             left: 60%;
             width: 0%;
             height: 0%;
-            background-color: #7a71f7;
+            background-color: #385ba8;
             transition: width 0.4s ease, height 0.4s ease, transform 1.0s ease; /* Добавляем transition для плавного изменения размеров и положения */
             border-radius: 5%;
             z-index: -1;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px #4e2db1, 0 0 15px #4e2db1, 0 0 15px #4e2db1, 0 0 15px #4e2db1;
+            box-shadow: 0 0 15px #0e19b4, 0 0 15px #0e19b4, 0 0 15px #4e2db1, 0 0 15px #4e2db1;
 
         }
 
@@ -176,7 +176,7 @@
             max-width: 800px;
             margin: 20px auto;
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(36, 43, 4, 0.8);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(1, 200, 54, 0.819);
         }
@@ -298,7 +298,7 @@
             </a>
         </div>
         <header>
-        <h1 style="text-align: center; color: white;">Мои посылки</h1>
+        <h1 style="text-align: center; color: rgb(18, 16, 16);">Мои посылки</h1>
         <div id="userLogin" class="user-login"></div>
         <div class="menu" onclick="toggleNav()">
             <img src="icon14.png" alt="Открыть меню" style="width: 40px; height: 40px;">
