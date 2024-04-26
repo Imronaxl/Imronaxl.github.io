@@ -9,7 +9,7 @@
         body {
             font-family: 'Times New Roman', Times, serif;
             background-image: url('icon2.jpg');
-            background-size: cover; 
+            background-size:cover; 
             margin: 0;
             padding: 0;
             background-color: #0a0a0a;
@@ -67,7 +67,7 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: rgba(17, 17, 17, 0.0); /* Значение альфа задает прозрачность, 0.8 - это 80% непрозрачности */
+            background-color: rgba(17, 17, 17, 0.3); /* Значение альфа задает прозрачность, 0.8 - это 80% непрозрачности */
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
@@ -167,51 +167,59 @@
             
         }   
 
-
         .container {
-            max-width: 800px; 
+            max-width: 1000px; /* Ширина контейнера */
             margin: auto; 
-            padding: 20px;
+            padding: 10px;
+            padding-left:300px;
+        }
+
+        .task-column {
+            display: flex;
+            flex-wrap: wrap; /* Задачи будут переноситься на новую строку при достижении конца контейнера */
         }
 
         .task {
-            background-color: #111;
-            padding: 20px;
+            width: calc(33.33% - 20px); /* Уменьшим ширину задачи для того, чтобы поместилось по три задачи на одну строку */
+            margin-right: 20px;
             margin-bottom: 20px;
+            background-color: rgba(17, 17, 17, 0.3);
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: 0.3s;
-            position: relative;
-            border: 2px solid #392f2f; 
+            border: 2px solid #392f2f;
+            display: flex;
+            flex-direction: column;
         }
 
         .task:hover {
-            border-color: #7a71f7; 
+            border-color: #7a71f7;
             box-shadow: 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8;
             transform: translateY(-5px);
-
         }
 
         .task h2 {
             margin-top: 0;
+            margin-bottom: 10px;
         }
 
         .task p {
-            margin-bottom: 0;
+            margin-bottom: 15px;
+            flex-grow: 1;
         }
 
         .read-more {
             background: #221e38;
             color: white;
-            padding: 8px 20px;
+            padding: 8px 12px;
             text-decoration: none;
             font-size: 16px;
             border-radius: 5px;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+            align-self: flex-end;
         }
+
 
         .read-more:hover {
             background: #4682b4;
@@ -230,7 +238,7 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
             position: absolute;
             bottom: 20px;
-            left: 20px;
+            left: 100px;
         }
 
         .about-us:hover {
@@ -239,10 +247,80 @@
 
             transform: scale(1.05);
         }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(loading.jpg);
+            background-size: cover;
+            background-color: rgb(0, 0, 0); /* Чёрный цвет с прозрачностью 50% */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999; /* Поместить слой поверх всего остального */
+        }
+
+        /* Стили для загрузочного экрана */
+        .loader {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .loader::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(
+                #3498db 0%,
+                #3498db 50%,
+                #f3f3f3 50%,
+                #f3f3f3 100%
+            );
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Анимация */
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            100% {
+                transform: scale(1.2);
+                box-shadow: 0 0 0 20px rgba(52, 152, 219, 0);
+            }
+        }
+
+        /* Стили для текста процента загрузки */
+        #progressText {
+            color: rgb(36, 32, 32);
+            font-size: 24px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1; /* Поместить текст поверх круга */
+        }
     </style>
 </head>
 <body>  
-    
+    <div class="overlay" id="black-bg"></div>
+    <div class="overlay" id="loader">
+        <div class="loader"></div>
+        <div id="progressText">0%</div> <!-- Блок для отображения процента загрузки -->
+    </div>
+
+
+
     <div id="mySidebar" class="sidebar">
         <a href="my_profile.html" class="menu-item">
             <img src="icon8.png" alt="Competition Icon">
@@ -264,11 +342,6 @@
             <img src="icon11.png" alt="Competition Icon">
             Мои посылки
         </a>
-        <a href="#" class="about-btn menu-item" onclick="openAbout()">
-            <img src="icon15.png" alt="Competition Icon" style="width: 30px; height: 25px;">
-
-            О нас
-        </a>
 
         <a href="#" class="logout-btn menu-item" onclick="logout()">
             <img src="icon12.png" alt="Competition Icon">
@@ -280,30 +353,12 @@
             <img src="icon14.png" alt="Открыть меню" style="width: 40px; height: 40px;">
             
         </div>
-        <div id="aboutModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeAbout()">&times;</span>
-                <h2>О нас</h2>
-                <p>Приветствуем вас в мире Tajik Fire - месте, где идеи превращаются в реальность, а навыки взлетают к новым высотам. Мы не просто платформа для соревнований, мы сообщество людей, которые разделяют страсть к программированию и стремятся к развитию.</p>
-                <img src="gif1.gif" alt="Coding Sticker" style="width: 100px; height: auto;">
-                <p>Наша миссия - вдохновлять и обучать, открывать новые горизонты и помогать вам достичь своих целей. Мы верим в силу знаний и в том, что каждый может стать лучше, если у него есть поддержка и ресурсы.</p>
-                <img src="https://media.giphy.com/media/1qXbl46DvyO4o8kNIr/giphy.gif" alt="Rocket Sticker" style="width: 100px; height: auto;">
-                <p>Если у вас есть идеи, вопросы или предложения, не стесняйтесь обращаться к нам. Мы здесь, чтобы помочь вам в каждом шаге вашего пути.</p>
-                <img src="gif.gif" alt="Support Sticker" style="width: 250px; height: 250px;">
-                <p>Присоединяйтесь к Tajik Fire - месте, где рождаются идеи и совершаются открытия!</p>
-                <ul>
-                    <li>Телефон техподдержки: +992900085961</li>
-                    <li>Электронная почта: gimron34@gmail.com</li>
-                </ul>
-                <!-- <p>Также, если вам хочется поддержать нас, вы можете это сделать, оплатив нам  через номер карты:</p>
-                <p>Номер карты для оплаты: **** **** **** **** </p> -->
-            </div>
-        </div>
     </header>
     <h1 style="text-align: center; color: white;">Архив</h1>
     <div id="userLogin" class="user-login"></div>
 
     <div class="container">
+        <div class="task-column">
         <div class="task">
             <h2>Задача 1</h2>
             <p> A + B = ? </p>
@@ -314,6 +369,14 @@
             <p>Описание задачи 2.</p>
             <a href="https://example.com/task2-details" target="_blank" class="read-more">Открыть задачу</a>
         </div>
+        <div class="task">
+            <h2>Задача 3</h2>
+            <p>Описание задачи 2.</p>
+            <a href="https://example.com/task2-details" target="_blank" class="read-more">Открыть задачу</a>
+        </div>
+      
+        
+    </div>
     </div>
 
 
@@ -368,6 +431,29 @@
             alert('Добро пожаловат, к сожалению у вас плохое соединение к серверу, подключитесь и потом перезапустите сайт!');
             userLogin.textContent = "Оффлайн";
         });
+        let progress = 0;
+        const blackBg = document.getElementById('black-bg');
+        const mainContent = document.getElementById('main-content');
+        const progressText = document.getElementById('progressText');
+
+        function simulateLoading() {
+            const interval = setInterval(() => {
+                progress += Math.random() * 5;
+                if (progress > 100) {
+                    clearInterval(interval);
+                    document.getElementById("loader").style.display = "none"; // Скрыть загрузочный экран
+                    blackBg.style.display = "none"; // Скрыть чёрный фон
+                    mainContent.style.display = "block"; // Показать основной контент
+                }
+                updateProgress(progress);
+            }, 100);
+        }
+
+        function updateProgress(progress) {
+            progressText.textContent = `${Math.round(progress)}%`; // Обновляем текст процента загрузки
+        }
+
+        simulateLoading();
 </script>
 </body>
 </html>
