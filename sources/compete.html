@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="scriptjs.js" ></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1, user-scalable=no">
     <title>Раздел в разработке</title>
@@ -23,163 +26,12 @@
             text-align: center;
             position: relative;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 3;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            overflow: auto;
-        }
-        .modal-content {
-            background-color: rgba(0, 0, 0, 0.4);
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            border-radius: 5px;
-            color: #fff;
-        }
-        .close {
-            color: #1c1616;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #fff;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .sidebar {
-            background-color: rgba(17, 17, 17, 0.0); /* Значение альфа задает прозрачность, 0.8 - это 80% непрозрачности */
-
-            height: 100%;
-            width: 0;
-            max-width: 240px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-        .sidebar a {
-            padding: 10px 15px;
-            text-decoration: none;
-            font-size: 15px;
-            color: #fff;
-            display: block;
-            background-color: rgba(0, 0, 0, 0.85); /* Значение альфа задает прозрачность, 0.8 - это 80% непрозрачности */
-
-            transition: 0.8s ease;
-            border-radius: 10%;
-            margin: 30px; /* Уменьшим отступ для более компактного вида */
-            text-align: center;
-            position: relative;
-            box-shadow: 0 2px 5px rgba(243, 239, 239, 0.96); /* Добавляем тень снизу */
-            
-        }
-
-        .sidebar a::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 60%;
-            width: 0%;
-            height: 0%;
-            background-color: #7a71f7;
-            transition: width 0.4s ease, height 0.4s ease, transform 1.0s ease; /* Добавляем transition для плавного изменения размеров и положения */
-            border-radius: 5%;
-            z-index: -1;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px #4e2db1, 0 0 15px #4e2db1, 0 0 15px #4e2db1, 0 0 15px #4e2db1;
-
-        }
-
-        .sidebar a:hover::before {
-            width: 120%; /* Увеличиваем размеры для заполнения фона цветом */
-            height: 120%; /* Увеличиваем размеры для заполнения фона цветом */
-            transform: translate(-50%, -50%);
-        }
-
-        .sidebar a:hover {
-            color: #100f0f; /* Цвет текста при наведении */
-            transform: translateX(-20px) translateY(-10px);
-            transition: width 0.8s ease, height 0.8s ease, transform 1s ease; /* Добавляем transition для плавного изменения размеров и положения */
-            
-        }
-
-        .menu {
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                z-index: 2;
-                cursor: pointer;
-                width: 30px; /* Ширина меню */
-                height: 30px; /* Высота меню */
-            }
-            
-            .menu-icon {
-                width: 30px;
-                height: 5px;
-                background-color: #fff;
-                margin: 6px 0;
-                border-radius: 5px;
-                transition: transform 0.4s, background-color 0.4s; /* добавляем transition для transform и background-color */
-            }
-            
-            .menu-icon:hover {
-                background-color: #f1f1f1;
-            }
-            .menu-item {
-                display: flex;
-                align-items: center;
-            }
-
-            .menu-item img {
-                width: 20px; /* Устанавливаем желаемую ширину для иконки */
-                height: auto; /* Сохраняем пропорции */
-                margin-right: 10px; /* Расстояние между иконкой и текстом */
-            }
-
+       
         .compete_point {
             margin-top: 0px;
             color:rgb(255, 94, 0);
         }
-        .user-login {
-            color: #fff;
-            font-weight: bold;
-            padding: 0px 10px;
-            background-color: #0f19aa;
-            border-radius: 70%;
-            margin-left:auto; /* Поместил элемент в самый верхний правый угол */
-            margin-top: 0px; /* Добавил небольшой отступ сверху */
-        }
-        .user-login {
-            color: #fff;
-            font-weight: bold;
-            background-color: #0f19aa;
-            border-radius: 0%;
-            padding: 8px 12px;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 2;
-            transition: transform 10s ease;
-            
-        }
-        .user-login:hover{
-            transform: translateX(-800px); 
-            
-        }   
+        
         
         .container {
             max-width: 800px;
@@ -199,25 +51,7 @@
             margin-bottom: 20px;
         }
         
-        .about-us {
-            background-color: #f1f1f1;
-            color: #111;
-            padding: 8px 20px;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-        }
-
-        .about-us:hover {
-            background: #4682b4;
-            box-shadow: 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8;
-
-            transform: scale(1.05);
-        }
+       
         @keyframes zastavka {
         0% {
             opacity: 0;
@@ -236,6 +70,17 @@
 </head>
 
 <body>
+    <div id="loader-wrapper">
+        <div class="cube">
+            <div class="cube-face front"></div>
+            <div class="cube-face back"></div>
+            <div class="cube-face left"></div>
+            <div class="cube-face right"></div>
+            <div class="cube-face top"></div>
+            <div class="cube-face bottom"></div>
+        </div>
+        <div id="progressText">0%</div>
+    </div>
     <div id="mySidebar" class="sidebar">
         <a href="my_profile.html" class="menu-item">
             <img src="icon8.png" alt="Competition Icon">
@@ -301,59 +146,6 @@
     </div>   
 
     <img src="in_progress_icon.png" style="position: fixed; bottom: 20px; left: 20px; width: 170px; height: auto; animation: zastavka 5s infinite;" alt="Icon">
-    <script>
-         function closeAbout() {
-            const aboutModal = document.getElementById("aboutModal");
-            aboutModal.style.display = "none";
-        }
 
-      function openAbout() {
-            const aboutModal = document.getElementById("aboutModal");
-            aboutModal.style.display = "block";
-        }
-       function toggleNav() {
-            const sidebar = document.getElementById("mySidebar");
-            sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
-        }
-
-       function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-        }
-
-        function logout() {
-            fetch('http://192.168.43.57:5000/logout')
-                .then(response => {
-                    if (response.ok) {
-                        return response.text();
-                    } else {
-                        throw new Error('Ошибка при выполнении запроса');
-                    }
-                })
-                .then(data => {
-                    console.log(data);
-                    window.location.href = "Autorezation.html";
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
-        fetch('http://192.168.43.57:5000/get_login')
-            .then(response => response.json())
-            .then(data => {
-                const userLogin = document.getElementById('userLogin');
-                if (data.login == '') {
-                    window.location.href = "Autorezation.html";
-                }
-                else {
-                // alert('Добро пожаловат ' + data.login + '!');
-                userLogin.textContent = data.login;
-                }
-            })
-            .catch(error => {
-                alert('Добро пожаловат, к сожалению у вас плохое соединение к серверу, подключитесь и потом перезапустите сайт!');
-                userLogin.textContent = "Оффлайн";
-            });
-    </script>
 </body>
 </html>

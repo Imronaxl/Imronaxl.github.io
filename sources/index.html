@@ -1,56 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="scriptjs.js" ></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Архив задач</title>
     <link rel="icon" href="fire_icon.jpeg" type="image/jpeg">
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
             background-image: url('icon2.jpg');
-            background-size:cover; 
+            background-size: cover; 
             margin: 0;
             padding: 0;
             background-color: #0a0a0a;
             color: #fff;
             overflow-x: hidden;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 3;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            overflow: auto;
-        }
-        .modal-content {
-            background-color: rgba(0, 0, 0, 0.4);
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            border-radius: 5px;
-            color: #fff;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #fff;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        
+       
         
         header {
             padding: 20px;
@@ -58,114 +27,6 @@
             position: relative;
         }
 
-        .sidebar {
-            
-            height: 100%;
-            width: 0;
-            max-width: 240px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: rgba(17, 17, 17, 0.3); /* Значение альфа задает прозрачность, 0.8 - это 80% непрозрачности */
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-        .sidebar a {
-            padding: 10px 15px;
-            text-decoration: none;
-            font-size: 15px;
-            color: #fff;
-            display: block;
-            transition: 0.8s ease;
-            border-radius: 10%;
-            margin: 30px; /* Уменьшим отступ для более компактного вида */
-            text-align: center;
-            position: relative;
-            box-shadow: 0 2px 5px rgba(243, 239, 239, 0.96); /* Добавляем тень снизу */
-            
-        }
-
-        .sidebar a::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 60%;
-            width: 0%;
-            height: 0%;
-            background-color: #7a71f7;
-            transition: width 0.4s ease, height 0.4s ease, transform 1.0s ease; /* Добавляем transition для плавного изменения размеров и положения */
-            border-radius: 5%;
-            z-index: -1;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px #4e2db1, 0 0 15px #4e2db1, 0 0 15px #4e2db1, 0 0 15px #4e2db1;
-
-        }
-
-        .sidebar a:hover::before {
-            width: 120%; /* Увеличиваем размеры для заполнения фона цветом */
-            height: 120%; /* Увеличиваем размеры для заполнения фона цветом */
-            transform: translate(-50%, -50%);
-        }
-
-        .sidebar a:hover {
-            color: #100f0f; /* Цвет текста при наведении */
-            transform: translateX(-20px) translateY(-10px);
-            transition: width 0.8s ease, height 0.8s ease, transform 1s ease; /* Добавляем transition для плавного изменения размеров и положения */
-            
-        }
-
-        .menu {
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                z-index: 2;
-                cursor: pointer;
-                width: 30px; /* Ширина меню */
-                height: 30px; /* Высота меню */
-            }
-            
-            .menu-icon {
-                width: 30px;
-                height: 5px;
-                background-color: #fff;
-                margin: 6px 0;
-                border-radius: 5px;
-                transition: transform 0.4s, background-color 0.4s; /* добавляем transition для transform и background-color */
-            }
-            
-            .menu-icon:hover {
-                background-color: #f1f1f1;
-            }
-            .menu-item {
-                display: flex;
-                align-items: center;
-            }
-
-            .menu-item img {
-                width: 20px; /* Устанавливаем желаемую ширину для иконки */
-                height: auto; /* Сохраняем пропорции */
-                margin-right: 10px; /* Расстояние между иконкой и текстом */
-            }
-
-        .user-login {
-            color: #fff;
-            font-weight: bold;
-            background-color: #0f19aa;
-            border-radius: 0%;
-            padding: 8px 12px;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 2;
-            transition: transform 10s ease;
-            
-        }
-        .user-login:hover{
-            transform: translateX(-800px); 
-            
-        }   
 
         .container {
             max-width: 1000px; /* Ширина контейнера */
@@ -195,7 +56,6 @@
 
         .task:hover {
             border-color: #7a71f7;
-            box-shadow: 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8;
             transform: translateY(-5px);
         }
 
@@ -219,12 +79,10 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
             align-self: flex-end;
         }
-
+        
 
         .read-more:hover {
-            background: #4682b4;
-            box-shadow: 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8, 0 0 15px #8969e8;
-
+            background: #138b08;
             transform: scale(1.05);
         }
 
@@ -247,77 +105,25 @@
 
             transform: scale(1.05);
         }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url(loading.jpg);
-            background-size: cover;
-            background-color: rgb(0, 0, 0); /* Чёрный цвет с прозрачностью 50% */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999; /* Поместить слой поверх всего остального */
-        }
+    
+     
 
-        /* Стили для загрузочного экрана */
-        .loader {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
 
-        .loader::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            background: conic-gradient(
-                #3498db 0%,
-                #3498db 50%,
-                #f3f3f3 50%,
-                #f3f3f3 100%
-            );
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Анимация */
-        @keyframes pulse {
-            0% {
-                transform: scale(0.8);
-                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
-            }
-            100% {
-                transform: scale(1.2);
-                box-shadow: 0 0 0 20px rgba(52, 152, 219, 0);
-            }
-        }
-
-        /* Стили для текста процента загрузки */
-        #progressText {
-            color: rgb(36, 32, 32);
-            font-size: 24px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1; /* Поместить текст поверх круга */
-        }
     </style>
 </head>
 <body>  
-    <div class="overlay" id="black-bg"></div>
-    <div class="overlay" id="loader">
-        <div class="loader"></div>
-        <div id="progressText">0%</div> <!-- Блок для отображения процента загрузки -->
+    <div id="loader-wrapper">
+    <div class="cube">
+        <div class="cube-face front"></div>
+        <div class="cube-face back"></div>
+        <div class="cube-face left"></div>
+        <div class="cube-face right"></div>
+        <div class="cube-face top"></div>
+        <div class="cube-face bottom"></div>
     </div>
+    <div id="progressText">0%</div>
+</div>
+    
 
 
 
@@ -342,7 +148,11 @@
             <img src="icon11.png" alt="Competition Icon">
             Мои посылки
         </a>
+        <a href="#" class="about-btn menu-item" onclick="openAbout()">
+            <img src="icon15.png" alt="Competition Icon" style="width: 30px; height: 25px;">
 
+            О нас
+        </a>
         <a href="#" class="logout-btn menu-item" onclick="logout()">
             <img src="icon12.png" alt="Competition Icon">
             Выход
@@ -352,6 +162,25 @@
         <div class="menu" onclick="toggleNav()">
             <img src="icon14.png" alt="Открыть меню" style="width: 40px; height: 40px;">
             
+        </div>
+        <div id="aboutModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAbout()">&times;</span>
+                <h2>О нас</h2>
+                <p>Приветствуем вас в мире Tajik Fire - месте, где идеи превращаются в реальность, а навыки взлетают к новым высотам. Мы не просто платформа для соревнований, мы сообщество людей, которые разделяют страсть к программированию и стремятся к развитию.</p>
+                <img src="gif1.gif" alt="Coding Sticker" style="width: 100px; height: auto;">
+                <p>Наша миссия - вдохновлять и обучать, открывать новые горизонты и помогать вам достичь своих целей. Мы верим в силу знаний и в том, что каждый может стать лучше, если у него есть поддержка и ресурсы.</p>
+                <img src="https://media.giphy.com/media/1qXbl46DvyO4o8kNIr/giphy.gif" alt="Rocket Sticker" style="width: 100px; height: auto;">
+                <p>Если у вас есть идеи, вопросы или предложения, не стесняйтесь обращаться к нам. Мы здесь, чтобы помочь вам в каждом шаге вашего пути.</p>
+                <img src="gif.gif" alt="Support Sticker" style="width: 250px; height: 250px;">
+                <p>Присоединяйтесь к Tajik Fire - месте, где рождаются идеи и совершаются открытия!</p>
+                    <ul>
+                    <li>Телефон техподдержки: +992900085961</li>
+                    <li>Электронная почта: gimron34@gmail.com</li>
+                </ul>
+                <!-- <p>Также, если вам хочется поддержать нас, вы можете это сделать, оплатив нам  через номер карты:</p>
+                <p>Номер карты для оплаты: **** **** **** **** (подставьте номер карты)</p> -->
+            </div>
         </div>
     </header>
     <h1 style="text-align: center; color: white;">Архив</h1>
@@ -379,80 +208,5 @@
     </div>
     </div>
 
-
-<script>
-      function closeAbout() {
-            const aboutModal = document.getElementById("aboutModal");
-            aboutModal.style.display = "none";
-        }
-
-      function openAbout() {
-            const aboutModal = document.getElementById("aboutModal");
-            aboutModal.style.display = "block";
-        }
-       function toggleNav() {
-            const sidebar = document.getElementById("mySidebar");
-            sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
-        }
-
-       function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-        }
-
-    function logout() {
-        fetch('http://192.168.43.57:5000/logout')
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                } else {
-                    throw new Error('Ошибка при выполнении запроса');
-                }
-            })
-            .then(data => {
-                console.log(data);
-                window.location.href = "Autorezation.html";
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-
-    fetch('http://192.168.43.57:5000/get_login')
-        .then(response => response.json())
-        .then(data => {
-            const userLogin = document.getElementById('userLogin');
-            if (data.login == '') {
-                window.location.href = "Autorezation.html";
-            } else {
-                userLogin.textContent = data.login;
-            }
-        })
-        .catch(error => {
-            userLogin.textContent = "Оффлайн";
-        });
-        let progress = 0;
-        const blackBg = document.getElementById('black-bg');
-        const mainContent = document.getElementById('main-content');
-        const progressText = document.getElementById('progressText');
-
-        function simulateLoading() {
-            const interval = setInterval(() => {
-                progress += Math.random() * 5;
-                if (progress > 100) {
-                    clearInterval(interval);
-                    document.getElementById("loader").style.display = "none"; // Скрыть загрузочный экран
-                    blackBg.style.display = "none"; // Скрыть чёрный фон
-                    mainContent.style.display = "block"; // Показать основной контент
-                }
-                updateProgress(progress);
-            }, 100);
-        }
-
-        function updateProgress(progress) {
-            progressText.textContent = `${Math.round(progress)}%`; // Обновляем текст процента загрузки
-        }
-
-        simulateLoading();
-</script>
-</body>
+      </body>
 </html>
