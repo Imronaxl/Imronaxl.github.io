@@ -1,0 +1,30 @@
+<div class="container">
+    <h2 class="style_data">17.04.2024</h2>
+    <p class="news_font">Сайт уже почти на пути к успеху, <span id="news1Short">Следим за новостями!!!</span> 
+        <button onclick="showFullText('news1')">Показать полностью</button>
+        <span id="news1Full" style="display: none;">Сайт уже почти на пути к успеху, Следим за новостями!!!</span>
+        <button onclick="hideFullText('news1')" style="display: none;">Скрыть</button>
+    </p>
+</div>
+<div class="container">
+    <h2 class="style_data">12.04.2024</h2>
+    <p class="news_font">О да! Теперь сайт Tajik Fire готов к работе. 
+        <span id="news2Short">Давайте покажем класс!</span> 
+        <button onclick="showFullText('news2')">Показать полностью</button>
+        <span id="news2Full" style="display: none;">О да! Теперь сайт Tajik Fire готов к работе. Давайте покажем класс!</span>
+        <button onclick="hideFullText('news2')" style="display: none;">Скрыть</button>
+    </p>
+</div>
+function showFullText(newsId) {
+    document.getElementById(newsId + "Short").style.display = "none";
+    document.getElementById(newsId + "Full").style.display = "inline";
+    document.querySelector('.container').style.height = "auto"; // Увеличение высоты контейнера
+    document.querySelector('.container').style.overflow = "auto"; // Показ скрытого контента с прокруткой
+}
+
+function hideFullText(newsId) {
+    document.getElementById(newsId + "Short").style.display = "inline";
+    document.getElementById(newsId + "Full").style.display = "none";
+    document.querySelector('.container').style.height = "initial"; // Возвращение высоты контейнера к исходной
+    document.querySelector('.container').style.overflow = "hidden"; // Скрытие скрытого контента
+}
