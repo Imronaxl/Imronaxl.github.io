@@ -3,7 +3,7 @@ import sys
 
 com = int(input())
 
-if com: 
+if com:
     os.system("g++ -std=c++17 -o gen gen.cpp" )
     os.system("g++ -std=c++17 -o correct tester.cpp")
     code = os.system("g++ -std=c++17 -o wrong cf.cpp")
@@ -22,3 +22,4 @@ for i in range(100):
         exit(0) 
 
 print("All tests are passed")
+    

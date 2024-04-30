@@ -11,119 +11,105 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('icons/my_profile_icon.jpg');
-            background-size: cover; /* Для увеличения картинки на всю ширину */
+            background-color: #222;
+            color: #eee;
             margin: 0;
             padding: 0;
-            background-color: #f2f2f2;
-            display:inline-flexbox;
+            display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* filter: brightness(50%); Пример снижения яркости на 30% */
         }
-        
+
         .profile {
-        text-align: center;
-        padding: 100px; /* Увеличиваем внутренний отступ */
-        border-radius: 20px; /* Уменьшаем радиус скругления */
-        box-shadow: 0 0 20px rgba(232, 232, 232, 0.982); /* Увеличиваем размытие тени */
-        animation: fadeIn 2.0s ease forwards;
-        max-width:600px; /* Фиксированная максимальная ширина */
-        margin: 0 auto; /* Центрирование блока по горизонтали */
-    }
+            text-align: center;
+            padding: 30px;
+            padding-inline: 180px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            max-width: 1500px;
+            margin: 0 auto;
+            background-color: #444;
+        }
 
         .profile img {
-            width: 200px; /* Увеличиваем размер изображения */
-            height: auto; /* Автоматическое определение высоты для сохранения пропорций */
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             margin-bottom: 20px;
-            animation: scaleIn 0.5s ease forwards;
         }
-      
-        header {
-            color: #fff;
-            padding: 0px;
-            text-align: center;
-            position: relative;
-        }
-       
-
-       
 
         .profile h1 {
             margin: 0;
             font-size: 24px;
-            color: #ffffff;
-            animation: slideIn 0.5s ease forwards;
+            color: #ff6f61;
         }
-        .profile img {
-            width: 200px; 
-            height: auto; 
-            border-radius: 50%;
-            margin-bottom: 20px;
-            animation: scaleIn 0.5s ease forwards;
-        }
+
         .profile p {
             margin: 5px 0;
-            color: #eeeeee;
-            animation: slideIn 0.5s ease forwards;
+            color: #ccc;
         }
-        
-        
-        .col{
-            color:#f2f2f2
+
+        .profile form {
+            margin-top: 20px;
         }
-        button[type="submit"] {
-            background-color: #705f7c; /* Зеленый цвет кнопки */
+
+        .profile label {
+            display: block;
+            margin-bottom: 5px;
+            color: #eee;
+            font-weight: bold;
+        }
+
+        .profile input[type="text"],
+        .profile input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #666;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #333;
+            color: #eee;
+        }
+
+        .profile button[type="submit"] {
+            background-color: #4a90e2;
             border: none;
             color: white;
-            padding: 1px 1px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
+            padding: 10px 20px;
             font-size: 16px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
+            border-radius: 5px;
             cursor: pointer;
-            border-radius: 8px;
-            box-shadow: 0 4px #008CBA; /* Добавление подсветки при наведении */
+            transition: background-color 0.3s;
         }
 
-        button[type="submit"]:hover {
-            background-color: #3b3d50e6; /* Зеленый цвет кнопки при наведении */
-            box-shadow: 0 0 15px #a9a3bc, 0 0 15px #a9a3bc, 0 0 15px #a9a3bc, 0 0 15px #a9a3bc;
-   
+        .profile button[type="submit"]:hover {
+            background-color: #357ec7;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .profile input[type="checkbox"] {
+            margin-right: 5px;
+            cursor: pointer;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .profile input[type="checkbox"] + label {
+            color: #ccc;
+            cursor: pointer;
         }
 
-        @keyframes scaleIn {
-            from {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+        .profile input[type="checkbox"]:hover + label {
+            color: #eee;
         }
-        
+        header {
+            color: #fff;
+            padding: 0px;
+            text-align: center; /* Выравнивание текста по центру */
+            display: flex;
+            flex-direction: column; /* Расположение элементов в столбец */
+        }
     </style>
+
 </head>
 <body>
     <div id="loader-wrapper">
@@ -194,7 +180,6 @@
             </div>
         </div>
     </header>
-    <h1 style="text-align: center; color: white;">Мой профиль</h1>
     <div id="userLogin" class="user-login"></div>
     <div class="profile">
         <img src="icons/profile_picture.png" style="height: auto; width: 110px;"  alt="Profile Picture">
@@ -214,8 +199,8 @@
             <label for="newPassword" class="col">Новый пароль:</label>
             <input type="password" id="newPassword" name="newPassword" required>
             <button type="submit">Изменить пароль</button>
-            <input type="checkbox" id="showPassword">
-            <label for="showPassword" class="col">Показать пароль</label>
+            <label for="showPassword" class="col">Показать пароль <input type="checkbox" id="showPassword"></label>
+
         </form>
 
     </div>

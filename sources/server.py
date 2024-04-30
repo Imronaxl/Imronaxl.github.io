@@ -37,7 +37,7 @@ def login_user():
     with open(file_path_l, 'r') as ss:
         login2 = ss.read()
     ok = 1
-    sf = ip_address + '%' + login + '%' + password
+    sf = '%' + login + '%' + password
     if sf in login2:
         x = login2.index(sf) + len(sf)
         if login2[x] != '%':
@@ -47,8 +47,9 @@ def login_user():
         with open(file_path_online, 'a') as ss:
             ss.write("\n" + ip_address + "%" + login + '%')
         return jsonify({"result":"Вы успешно вошли в свой аккаунт!"})
-    elif not ok or (ip_address + "%" + login in login2 and ip_address + "%" + login + "%" + password not in login2) or password == '':
+    elif not ok or ("%" + login in login2 and ip_address + "%" + login + "%" + password not in login2) or password == '':
         return jsonify({"result":"Неправильный Парол"})
+   
     else:
 
         return jsonify({"result":"Такой логин не существует("})
@@ -183,13 +184,15 @@ def get_newss():
 @app.route('/get_info_user')
 def get_info_userr():
     ip_address = request.remote_addr
-
-    login = ''
+    v = get_login()
+    login = v['login']
+    print(login)
     with open('/home/imeon/Project_Olympiad/login_list/login_list.txt', 'r') as file:
         f = file.readline()
-        while ip_address not in f:
+        while login not in f:
             f = file.readline()
         p1 = f
+    print("@", p1)
     ind = p1.index('%')
     ind1 = p1.index('%', ind + 1)
     ind2 = p1.index('%', ind1 + 1)

@@ -15,6 +15,7 @@
             background-size: cover;
             margin: 0;
             padding: 0;
+            background-image: url('icons/icon2.jpg');
             background-color: #070708;
             color: #fff;
             overflow-x: hidden;
@@ -72,7 +73,7 @@
             margin: 40px auto;
             padding: 20px; /* Увеличение внутренних отступов для улучшенного визуального эффекта */
             border-radius: 40px; /* Закругление углов */
-            background-color: #350f78cc; /* Пример значения с немного меньшей прозрачностью */
+            background-color: rgba(0, 0, 33, 0.526); /* Пример значения с немного меньшей прозрачностью */
             color: #fff; /* Цвет текста */
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация для движения и тени */
@@ -81,16 +82,16 @@
         .container:hover {
             transform: translateY(-5px); /* Поднимаем контейнер немного вверх при наведении */
             box-shadow: 
-                3px 3px 3px rgb(254, 254, 254), /* Тень справа снизу */
-                -3px -3px 3px rgba(254, 254, 254), /* Тень слева сверху */
-                3px -3px 3px rgba(254, 254, 254), /* Тень справа сверху */
-                -3px 3px 3px rgba(254, 254, 254); /* Тень слева снизу */
+                2px 2px 2px rgb(8, 0, 119), /* Тень справа снизу */
+                -2px -2px 2px rgb(0, 14, 123), /* Тень слева сверху */
+                2px -2px 2px rgba(254, 254, 254), /* Тень справа сверху */
+                -2px 2px 2px rgb(0, 10, 101); /* Тень слева снизу */
         }
 
         /* Обновленный стиль для кнопок "Показать" и "Скрыть" */
         .show-btn, .hide-btn {
-            background-color: rgba(41, 41, 41, 0.8); /* Пример значения с немного меньшей прозрачностью */
-            color: #fff;
+            background-color: rgba(0, 22, 74, 0.5); /* Пример значения с немного меньшей прозрачностью */
+            color: #ffffff;
             border: none;
             border-radius: 5px;
             padding: 8px 16px;
@@ -100,7 +101,7 @@
         }
 
         .show-btn:hover, .hide-btn:hover {
-            background-color: rgb(98, 98, 98); /* Пример значения без прозрачности при наведении */
+            background-color: rgb(2, 5, 89); /* Пример значения без прозрачности при наведении */
         }
     </style>
 </head>

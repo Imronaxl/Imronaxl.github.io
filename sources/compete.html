@@ -10,62 +10,81 @@
     <!-- Установка иконки -->
     <link rel="icon" href="icons/fire_icon.jpeg" type="image/jpeg">
     <style>
-         body {
-            font-family: 'Times New Roman', Times, serif;
-            background-image: url('icons/icon18.jpg');
-            background-size: cover; 
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('icons/icon2.jpg');
+            background-size: cover;
             margin: 0;
             padding: 0;
-            background-color: #0a0a0a;
-            color: #fff;
-            overflow-x: hidden;
+            background-color: #f2f2f2; /* Light gray background */
+            color: #333; /* Dark text color */
             text-align: center;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff; /* White background */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h3 {
+            color: #ff6f61; /* Red color for headings */
+        }
+
+        p {
+            color: #777; /* Dark gray text color */
+            margin-bottom: 20px;
+        }
+
         header {
             padding: 20px;
             text-align: center;
             position: relative;
         }
-       
+
         .compete_point {
             margin-top: 0px;
-            color:rgb(255, 94, 0);
+            color: #ffffff; /* Red color for headings */
         }
-        
-        
+
         .container {
             max-width: 800px;
             margin: 30px auto;
             padding: 20px;
-            background-color: rgba(221, 114, 7, 0.6); /* Значение альфа (0.5) определяет уровень прозрачности */
+            background-color: rgba(77, 70, 70, 0.5); /* Light white background with transparency */
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+            box-shadow: 0 2px 4px rgba(243, 241, 241, 0.1);
         }
+
         h1 {
-            color: #140c06;
+            color: #140c06; /* Dark brown color for main heading */
             margin-top: 0px;
         }
+
         p {
-            color: #fff8f8;
+            color: #555; /* Dark gray text color */
             margin-bottom: 20px;
         }
-        
-       
+
         @keyframes zastavka {
-        0% {
-            opacity: 0;
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            75% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
-        50% {
-            opacity: 1;
-        }
-        75% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-        }
+
+
     </style>
 </head>
 
@@ -141,8 +160,8 @@
     <div id="userLogin" class="user-login"></div>
     <h1 class="compete_point">Соревнование</h1>
     <div class="container">
-        <h1 style="color:#f1f1f1">Раздел находится в разработке</h1>
-        <h3 style="color:rgb(255, 255, 255)">Мы работаем над этим разделом. Пожалуйста, вернитесь позже!!!.</h3>
+        <h1 style="color:#ffffff">Раздел находится в разработке</h1>
+        <h3 style="color:rgb(255, 251, 251)">Мы работаем над этим разделом. Пожалуйста, вернитесь позже!!!.</h3>
     </div>   
 
     <img src="icons/in_progress_icon.png" style="position: fixed; bottom: 20px; left: 20px; width: 170px; height: auto; animation: zastavka 5s infinite;" alt="Icon">
