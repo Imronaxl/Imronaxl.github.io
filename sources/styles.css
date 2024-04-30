@@ -72,7 +72,7 @@
             margin: 30px; /* Уменьшим отступ для более компактного вида */
             text-align: center;
             position: relative;
-            box-shadow: 1px 1px 1px rgba(29, 119, 167, 0.96); /* Добавляем тень снизу */
+            box-shadow: 1px 1px 1px rgba(3, 35, 161, 0.96); /* Добавляем тень снизу */
             
         }
         
@@ -102,10 +102,10 @@
             transform: translateX(-13px) translateY(-8px);
             transition: width 0.0s ease, height 0.0s ease, transform 0.8s ease; /* Добавляем transition для плавного изменения размеров и положения */
             box-shadow: 
-                3px 3px 3px rgb(60, 3, 130), /* Тень справа снизу */
-                -3px -3px 3px rgb(60, 3, 130), /* Тень слева сверху */
-                3px -3px 3px rgba(60, 3, 130), /* Тень справа сверху */
-                -3px 3px 3px rgb(60, 3, 130); /* Тень слева снизу */
+                2px 2px 2px rgb(3, 35, 161), /* Тень справа снизу */
+                -2px -2px 2px rgb(3, 35, 161), /* Тень слева сверху */
+                2px -2px 2px rgba(3, 35, 161), /* Тень справа сверху */
+                -2px 2px 2px rgb(3, 35, 161); /* Тень слева снизу */
         }
     #loader {
             width: 120px;
