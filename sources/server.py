@@ -8,23 +8,19 @@ app = Flask(__name__)
 app.static_folder = 'static'
 CORS(app)
 def run_cpp_code():
-    cpp_file = '/home/imeon/Project_Olympiad/Debugging/zapuskator.cpp'
-    cpp_file_o = '/home/imeon/Project_Olympiad/Debugging/zapuskator'
-    # try:
-    #     os.remove('/home/imeon/Project_Olympiad/Debugging/' + 'tempCodeRunnerFile')
-    #     os.remove('/home/imeon/Project_Olympiad/Debugging/' + 'tempCodeRunnerFile.cpp')
-    #     os.remove(cpp_file_o)
-    # except:
-    #     pass
-    compilation_result = subprocess.run(["g++", cpp_file, "-o", cpp_file_o], capture_output=True, text=True)
+    cpp_file = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/zapuskator.cpp'
+    cpp_file_o = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/zapuskator'
+    #compilation_result = subprocess.run(["g++", cpp_file, "-o", cpp_file_o], capture_output=True, text=True)
+    os.system("g++ " + cpp_file + " -o " + cpp_file_o)
+    os.system(cpp_file_o)
+    # Компиляция C++ кода
 
-    if compilation_result.returncode == 0:
-        execution_result = subprocess.run([cpp_file_o], capture_output=True, text=True)
-        ans  = execution_result.stdout
+    # execution_result = subprocess.run([cpp_file_o], capture_output=True, text=True)
+    with open('/home/imeon/Project_Olympiad/CheckProblems/Debugging/Verdict.txt') as file:
+        ans = file.readline()
 
-        return ans
-    else:
-        return "Ошибка при выполнении запроса"
+    return ans
+   
 @app.route('/login', methods = ['POST'])
 def login_user():
     ip_address = request.remote_addr
@@ -86,7 +82,7 @@ def upload_file():
 
     try:
         content = file.read().decode('utf-8')
-        file_path_c = '/home/imeon/Project_Olympiad/Debugging/smart.cpp'
+        file_path_c = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/smart.cpp'
         with open(file_path_c, 'w') as output_file:
             output_file.write(content)
         login = ''
@@ -186,7 +182,6 @@ def get_info_userr():
     ip_address = request.remote_addr
     v = get_login()
     login = v['login']
-    print(login)
     with open('/home/imeon/Project_Olympiad/login_list/login_list.txt', 'r') as file:
         f = file.readline()
         while login not in f:

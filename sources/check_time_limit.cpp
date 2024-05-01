@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <chrono>
 #include <unistd.h>
@@ -10,6 +9,7 @@ using namespace std;
 using namespace chrono;
 
 void sum_positive_numbers(const vector<int>& arr) {
+    while(true) {}
     int total = 0;
     for (int num : arr) {
         if (num > 0) {
@@ -19,14 +19,9 @@ void sum_positive_numbers(const vector<int>& arr) {
 }
 
 int main() {
-    ifstream inputFile("input.txt"); // Открываем файл для чтения
-    int n;
-    inputFile >> n;
-    vector<int> arr(n);
-    for (int i = 0; i < n; ++i) {
-        inputFile >> arr[i];
-    }
-    inputFile.close(); // Закрываем файл
+    int n = 3;
+    vector<int> arr = {1, 3 , 1};
+ 
 
     pid_t child_pid = fork();
     if (child_pid == 0) {
@@ -41,10 +36,15 @@ int main() {
     } else {
         // Parent process
         int status;
+        auto start_time = high_resolution_clock::now();
         waitpid(child_pid, &status, 0);
+        auto end_time = high_resolution_clock::now();
 
-        if (WIFSIGNALED(status) && WTERMSIG(status) == SIGXCPU) {
+        auto duration = duration_cast<milliseconds>(end_time - start_time);
+        if (WIFSIGNALED(status)) {
             cout << "Time limit exceeded" << endl;
+        } else {
+            cout << "Execution time: " << duration.count() << " milliseconds" << endl;
         }
     }
 
