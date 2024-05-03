@@ -1,8 +1,14 @@
 from flask import Flask, request, jsonify, render_template, redirect, send_from_directory, send_file
 from flask_cors import CORS
-from collections import Counter
+from collections import Counter, deque
 import subprocess, os, webbrowser
+import threading, time
+import uuid
+# Определяем блокировку для синхронизации доступа к очереди запросов
+queue_lock = threading.Lock()
 
+# Создаем очередь для управления запросами
+request_queue = deque()
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -19,8 +25,69 @@ def run_cpp_code():
     with open('/home/imeon/Project_Olympiad/CheckProblems/Debugging/Verdict.txt') as file:
         ans = file.readline()
 
-    return ans
-   
+    return ans.strip()
+
+# def get_mac_address(request):
+#     ip_address = request.remote_addr
+#     mac_address = uuid.uuid5(uuid.NAMESPACE_DNS, ip_address)
+#     return mac_address
+
+def process_next_request():
+    while True:
+        # Проверяем, есть ли запросы в очереди
+        if request_queue:
+            # Обрабатываем самый старый запрос в очереди
+            with queue_lock:
+                request_data = request_queue.popleft()
+            process_request(request_data)
+        else:
+            # Если очередь пуста, ждем некоторое время перед повторной проверкой
+            # Это предотвращает избыточное использование процессора
+            time.sleep(0.2)
+
+# Функция для обработки запроса
+def process_request(request_data):
+    ip_address = request_data['ip_address']
+
+
+    file = request_data['file']
+    timee = request_data['timestamp']
+    content = file
+    file_path_c = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/smart.cpp'
+    with open(file_path_c, 'w') as output_file:
+        output_file.write(content)
+
+    login = ''
+    with open('/home/imeon/Project_Olympiad/online_users/online.txt', 'r') as file:
+        f = file.readline()
+        while ip_address not in f:
+            f = file.readline()
+        p1 = f
+    ind = p1.index('%')
+    ind1 = p1.index('%', ind + 1)
+    login = p1[ind + 1:ind1]
+
+    p = run_cpp_code()
+    new_text = "\nA%" + p + '%' + timee + "\n"
+    with open('/home/imeon/Project_Olympiad/logins_submit/' + login + '.txt', 'a') as file:
+        file.write(new_text)
+from datetime import datetime
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    ip_address = request.remote_addr
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+  
+
+    # Добавляем запрос в очередь для последующей обработки
+    file = request.files['file']
+    content = file.read().decode('utf-8')
+    
+    with queue_lock:
+        request_queue.append({'timestamp': timestamp, 'ip_address': ip_address, 'file': content})
+    
+    return jsonify({'result': 1}), 200
+
 @app.route('/login', methods = ['POST'])
 def login_user():
     ip_address = request.remote_addr
@@ -69,44 +136,13 @@ def register_user():
 
     return jsonify({"result":"Вы успешно создали Аккаунт!"})
 
-@app.route('/upload', methods=['POST'])
-def upload_file():
-    ip_address = request.remote_addr
-    if 'file' not in request.files:
-        return jsonify({'result': 'No file part'})
-
-    file = request.files['file']
-
-    if file.filename == '':
-        return jsonify({'result': 'No selected file'})
-
-    try:
-        content = file.read().decode('utf-8')
-        file_path_c = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/smart.cpp'
-        with open(file_path_c, 'w') as output_file:
-            output_file.write(content)
-        login = ''
-        with open('/home/imeon/Project_Olympiad/online_users/online.txt', 'r') as file:
-            f = file.readline()
-            while ip_address not in f:
-                f = file.readline()
-            p1 = f
-        ind = p1.index('%')
-        ind1 = p1.index('%', ind + 1)
-        login = p1[ind + 1:ind1]
-        p = run_cpp_code()
-        new_text = "\nA%" + p + "\n"
-        with open('/home/imeon/Project_Olympiad/logins_submit/' + login + '.txt', 'a') as file:
-                file.write(new_text)
-        return jsonify({'result': 1})
-
-    except Exception as e:
-        return jsonify({'result': 'Error', 'error_message': str(e)})
 
 @app.route('/get_login')
 def get_login():
     login2 = ''
     ip_address = request.remote_addr
+  #  mac_address = get_mac_address(request)
+
     login = ''
     with open('/home/imeon/Project_Olympiad/online_users/online.txt', 'r') as file:
         login2 = file.read().strip()
@@ -115,6 +151,7 @@ def get_login():
         ind1 = login2.index('%', ind + 1)
         ind2 = login2.index('%', ind1 + 1)
         login = login2[ind1 + 1:ind2]
+    print("@@@@@", mac_address)
     return {"login":login}
 
 @app.route('/logout')
@@ -154,7 +191,9 @@ def get_packages():
         for i in range(1000):
             if x != '' and x != '\n':
                 ix = x.index('%')
-                packages_data.append({'name':x[:ix], 'verdict':x[ix + 1:]})
+                ix1 = x[ix + 1:].index('%') + ix + 1
+                
+                packages_data.append({'name':x[:ix], 'verdict':x[ix + 1:ix1], 'timestamp': x[ix1 + 1:]})
             x = ss.readline()
     packages_data.reverse()
     return jsonify(packages_data)
@@ -187,7 +226,6 @@ def get_info_userr():
         while login not in f:
             f = file.readline()
         p1 = f
-    print("@", p1)
     ind = p1.index('%')
     ind1 = p1.index('%', ind + 1)
     ind2 = p1.index('%', ind1 + 1)
@@ -265,4 +303,11 @@ def change_password():
     return jsonify({"message": "Пароль пользователя успешно изменен."})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Запускаем отдельный поток для обработки запросов из очереди
+    request_processor_thread = threading.Thread(target=process_next_request)
+    request_processor_thread.daemon = True
+    request_processor_thread.start()
+ 
+     # Запускаем Flask приложение
+
+    app.run(host='0.0.0.0', port=5000)

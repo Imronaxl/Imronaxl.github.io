@@ -50,7 +50,7 @@
  function simulateLoading() {
         let progress = 0;
         const interval = setInterval(() => {
-            progress += Math.random() * 7;
+            progress += Math.random() * 14;
             if (progress > 100) {
                 clearInterval(interval);
                 document.getElementById("loader-wrapper").style.display = "none";
@@ -61,13 +61,7 @@
             updateLoader(progress); // Вызываем функцию для обновления анимации спрайта
         }, 100);
     }
-  function updateLoader(progress) {
-        const loader = document.getElementById('loader');
-        const degrees = progress * 0.6; // Преобразуем процент в градусы для изменения цвета
-        const hue = (progress / 100) * 120; // Преобразуем процент в градусы для изменения оттенка
-        loader.style.transform = `rotate(${degrees}deg)`; // Поворачиваем кружок
-        loader.style.backgroundColor = `hsl(${hue}, 70%, 50%)`; // Изменяем цвет круга в зависимости от процента
-    }
+
 
     simulateLoading();
     fetch('http://192.168.43.57:5000/get_info_user')
@@ -86,7 +80,6 @@
     .catch(error => {
         console.error('Error:', error);
     });
-
     fetch('http://192.168.43.57:5000/get_packages')
     .then(response => response.json())
     .then(data => {
@@ -94,18 +87,16 @@
         data.forEach(package => {
             const packageElement = document.createElement('div');
             packageElement.classList.add('package');
-            if (package.verdict.includes("Accepted")) {
-                
-                packageElement.innerHTML = `<h3>${package.name}</h3><p class="accepted">${package.verdict}</p>`;
-            }
-            else {
-                packageElement.innerHTML = `<h3>${package.name}</h3><p class="wrong">${package.verdict}</p>`;
+            const timestamp = new Date(package.timestamp).toLocaleString('en-US', {hour12: false}); // Получаем полную дату и время в 24-часовом формате без AM/PM
+            if (package.verdict == "Accepted") {
+                packageElement.innerHTML = `<h3>${package.name}</h3><p class="accepted">${package.verdict}</p><p class="timestamp">${timestamp}</p>`;
+            } else {
+                packageElement.innerHTML = `<h3>${package.name}</h3><p class="wrong">${package.verdict}</p><p class="timestamp">${timestamp}</p>`;
             } 
-               packagesDiv.appendChild(packageElement);
+            packagesDiv.appendChild(packageElement);
         });
     })
     .catch(error => console.error('Error:', error));
-
 
 
         function showFullText(newsId) {

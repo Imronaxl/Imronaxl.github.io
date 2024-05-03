@@ -132,7 +132,14 @@
             transform-style: preserve-3d;
             animation: rotate-cube 2s infinite linear;
         }
-    
+        .timestamp {
+            font-family: Arial, sans-serif; /* Кастомный шрифт */
+            font-size: 17px; /* Размер текста */
+            color: #f1f1f1; /* Цвет текста */
+            margin-top: 5px; /* Отступ сверху */
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3); /* Тень текста */
+        }
+        
         .cube-face {
             position: absolute;
             width: 100%;
