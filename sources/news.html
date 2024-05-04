@@ -11,7 +11,7 @@
 
     <style>
             body {
-            font-family: 'Arial', sans-serif;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -21,15 +21,12 @@
             overflow-x: hidden;
             text-align: center;
         }
-
-
-     
-        
       
             
             p {
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
                 color: #ccc;
-                margin-bottom: 20px;
             }
             
             .news-font {
@@ -48,6 +45,8 @@
             
     
         .style_data {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
             color:#ffffff;
         }
        
@@ -70,6 +69,8 @@
         
 
         .container {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
             max-width: 800px;
             margin: 40px auto;
             padding: 20px; /* Увеличение внутренних отступов для улучшенного визуального эффекта */
@@ -150,7 +151,20 @@
             Выход
         </a>
     </div>
-
+    <ul id="languageList" class="language-list">
+        <li onclick="changeLanguage('english')">
+            English
+            <img src="icons/english_flag.png" alt="English Flag">
+        </li>
+        <li onclick="changeLanguage('russian')">
+            Русский
+            <img src="icons/russian_flag.png" alt="Russian Flag">
+        </li>
+        <li onclick="changeLanguage('tajik')">
+            Тоҷикӣ
+            <img src="icons/tajik_flag.png" alt="Tajik Flag">
+        </li>
+    </ul>
 <header>
 
     <div id="aboutModal" class="modal">
@@ -158,11 +172,8 @@
             <span class="close" onclick="closeAbout()">&times;</span>
             <h2>О нас</h2>
             <p>Приветствуем вас в мире Tajik Fire - месте, где идеи превращаются в реальность, а навыки взлетают к новым высотам. Мы не просто платформа для соревнований, мы сообщество людей, которые разделяют страсть к программированию и стремятся к развитию.</p>
-            <img src="icons/gif1.gif" alt="Coding Sticker" style="width: 100px; height: auto;">
             <p>Наша миссия - вдохновлять и обучать, открывать новые горизонты и помогать вам достичь своих целей. Мы верим в силу знаний и в том, что каждый может стать лучше, если у него есть поддержка и ресурсы.</p>
-            <img src="https://media.giphy.com/media/1qXbl46DvyO4o8kNIr/giphy.gif" alt="Rocket Sticker" style="width: 100px; height: auto;">
             <p>Если у вас есть идеи, вопросы или предложения, не стесняйтесь обращаться к нам. Мы здесь, чтобы помочь вам в каждом шаге вашего пути.</p>
-            <img src="icons/gif.gif" alt="Support Sticker" style="width: 250px; height: 250px;">
             <p>Присоединяйтесь к Tajik Fire - месте, где рождаются идеи и совершаются открытия!</p>
             <ul>
                 <li>Телефон техподдержки: +992900085961</li>
@@ -179,6 +190,8 @@
     <div id="userLogin" class="user-login"></div>
     <h1 class="news_point">Новости</h1>
 </header>
+<button onclick="showLanguagePopup()" class="language-btn">Выбрать язык</button>
+
 <div class="container">
 
 </div>
@@ -225,6 +238,24 @@
     })
     .catch(error => {
         console.error('Error:', error);
-    });</script>
+    });
+    function changeLanguage(language) {
+        var redirectUrl;
+        switch (language) {
+            case 'english':
+                redirectUrl = 'news2.html';
+                break;
+            case 'russian':
+                redirectUrl = 'news.html';
+                break;
+            case 'tajik':
+                redirectUrl = 'news1.html';
+                break;
+            default:
+                redirectUrl = 'news.html';
+        }
+        window.location.href = redirectUrl;
+    }
+    </script>
 </body>
 </html>

@@ -28,7 +28,7 @@ function logout() {
         })
         .then(data => {
             console.log(data);
-            window.location.href = "Autorezation.html";
+            window.location.href = "Autorezation1.html";
         })
         .catch(error => {
             console.error('Error:', error);
@@ -82,6 +82,24 @@ fetch('http://192.168.43.57:5000/get_info_user')
         console.error('Error:', error);
     });
 
+fetch('http://192.168.43.57:5000/get_packages')
+    .then(response => response.json())
+    .then(data => {
+        const packagesDiv = document.getElementById('packages');
+        data.forEach(package => {
+            const packageElement = document.createElement('div');
+            packageElement.classList.add('package');
+            const timestamp = new Date(package.timestamp).toLocaleString('en-US', {hour12: false}); // Получаем полную дату и время в 24-часовом формате без AM/PM
+            if (package.verdict == "Accepted") {
+                packageElement.innerHTML = `<h3>${package.name}</h3><p class="accepted">${package.verdict}</p><p class="timestamp">${timestamp}</p>`;
+            } else {
+                packageElement.innerHTML = `<h3>${package.name}</h3><p class="wrong">${package.verdict}</p><p class="timestamp">${timestamp}</p>`;
+            } 
+            packagesDiv.appendChild(packageElement);
+        });
+    })
+    .catch(error => console.error('Error:', error));
+
 function showFullText(newsId) {
     const fullText = document.getElementById(newsId + "Full");
     const showBtn = document.querySelector(`#${newsId}Container .show-btn`);
@@ -121,10 +139,28 @@ fetch('http://192.168.43.57:5000/get_task_description1')
     }); 
 
     function showLanguagePopup() {
-            var languageList = document.getElementById("languageList");
-            if (languageList.style.display === "block") {
-                languageList.style.display = "none";
-            } else {
-                languageList.style.display = "block";
-            }
+        var languageList = document.getElementById("languageList");
+        if (languageList.style.display === "block") {
+            languageList.style.display = "none";
+        } else {
+            languageList.style.display = "block";
         }
+    }
+
+    function changeLanguage(language) {
+        var redirectUrl;
+        switch (language) {
+            case 'english':
+                redirectUrl = 'index2.html';
+                break;
+            case 'russian':
+                redirectUrl = 'index.html';
+                break;
+            case 'tajik':
+                redirectUrl = 'index1.html';
+                break;
+            default:
+                redirectUrl = 'index.html'; // Default to English version
+        }
+        window.location.href = redirectUrl;
+    }

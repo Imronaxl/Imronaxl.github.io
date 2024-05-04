@@ -151,7 +151,6 @@ def get_login():
         ind1 = login2.index('%', ind + 1)
         ind2 = login2.index('%', ind1 + 1)
         login = login2[ind1 + 1:ind2]
-    print("@@@@@", mac_address)
     return {"login":login}
 
 @app.route('/logout')
@@ -270,6 +269,8 @@ def change_name():
         file.write('')
     with open('/home/imeon/Project_Olympiad/login_list/login_list.txt', 'a') as file:
         for i in p:
+            if i == '\n':continue
+            
             file.write('\n' + i)
         file.write('\n' + ip_address + '%' + login + "%" + new_username)
     
