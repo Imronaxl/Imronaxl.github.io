@@ -12,17 +12,18 @@ request_queue = deque()
 
 app = Flask(__name__)
 app.static_folder = 'static'
+name_task = dict()
+name_task[0] = 'A + B = ?'
+name_task[1] = 'День Рождения у Илхома ?'
 CORS(app)
-def run_cpp_code():
-    cpp_file = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/zapuskator.cpp'
-    cpp_file_o = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/zapuskator'
+def run_cpp_code(cpp_file, cpp_file_o, cpp_file_ans):
+  #  cpp_file = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/zapuskator.cpp'
+  #  cpp_file_o = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/zapuskator'
     #compilation_result = subprocess.run(["g++", cpp_file, "-o", cpp_file_o], capture_output=True, text=True)
     os.system("g++ " + cpp_file + " -o " + cpp_file_o)
     os.system(cpp_file_o)
-    # Компиляция C++ кода
 
-    # execution_result = subprocess.run([cpp_file_o], capture_output=True, text=True)
-    with open('/home/imeon/Project_Olympiad/CheckProblems/Debugging/Verdict.txt') as file:
+    with open(cpp_file_ans, 'r') as file:
         ans = file.readline()
 
     return ans.strip()
@@ -49,14 +50,19 @@ def process_next_request():
 def process_request(request_data):
     ip_address = request_data['ip_address']
 
-
     file = request_data['file']
     timee = request_data['timestamp']
     content = file
-    file_path_c = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/smart.cpp'
+    name = str(request_data['name'])
+    if name == '0':name = ''
+    file_path_c = '/home/imeon/Project_Olympiad/CheckProblems/Debugging' + name + '/stupid.cpp'
+    cpp_file = '/home/imeon/Project_Olympiad/CheckProblems/Debugging' + name + '/zapuskator.cpp'
+    cpp_file_o = '/home/imeon/Project_Olympiad/CheckProblems/Debugging' + name + '/zapuskator'
+    cpp_file_ans = '/home/imeon/Project_Olympiad/CheckProblems/Debugging' + name + '/Verdict.txt'
+
     with open(file_path_c, 'w') as output_file:
         output_file.write(content)
-
+    
     login = ''
     with open('/home/imeon/Project_Olympiad/online_users/online.txt', 'r') as file:
         f = file.readline()
@@ -66,9 +72,10 @@ def process_request(request_data):
     ind = p1.index('%')
     ind1 = p1.index('%', ind + 1)
     login = p1[ind + 1:ind1]
-
-    p = run_cpp_code()
-    new_text = "\nA%" + p + '%' + timee + "\n"
+    p = run_cpp_code(cpp_file, cpp_file_o, cpp_file_ans)
+    if name == '':name = 0
+    name = int(name)
+    new_text = name_task[name] + "%" + p + '%' + timee + "\n"
     with open('/home/imeon/Project_Olympiad/logins_submit/' + login + '.txt', 'a') as file:
         file.write(new_text)
 from datetime import datetime
@@ -77,14 +84,14 @@ from datetime import datetime
 def upload_file():
     ip_address = request.remote_addr
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-  
-
+    
+    name = request.form.get('x')  # Получение значения x из FormData
     # Добавляем запрос в очередь для последующей обработки
     file = request.files['file']
     content = file.read().decode('utf-8')
     
     with queue_lock:
-        request_queue.append({'timestamp': timestamp, 'ip_address': ip_address, 'file': content})
+        request_queue.append({'timestamp': timestamp, 'ip_address': ip_address, 'file': content, 'name': name})
     
     return jsonify({'result': 1}), 200
 
@@ -196,9 +203,11 @@ def get_packages():
             x = ss.readline()
     packages_data.reverse()
     return jsonify(packages_data)
-@app.route('/get_task_description1')
+@app.route('/get_task_description1', methods=['POST'])
 def get_task_description1():
-    file_path = '/home/imeon/Project_Olympiad/Tasks/Task1_description.txt'
+    langg = str(request.form.get('langg'))
+    number_task = str(request.form.get('number_task'))
+    file_path = '/home/imeon/Project_Olympiad/Tasks/' + 'Task' + number_task + '_' + langg + 'description.txt'
 
     with open(file_path, 'r') as file:
         task_description = file.read()

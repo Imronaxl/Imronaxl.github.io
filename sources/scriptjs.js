@@ -103,22 +103,7 @@ function hideFullText(newsId) {
     hideBtn.style.display = "none";
 }
 
-fetch('http://192.168.43.57:5000/get_task_description1')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Ошибка при запросе данных');
-        }
-        return response.json();
-    })
-    .then(data => {
-        const taskDetails = document.querySelector('.task-details');
-        const taskDescription = document.createElement('pre');
-        taskDescription.textContent = data.taskDescription;
-        taskDetails.appendChild(taskDescription);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    }); 
+
 
     function showLanguagePopup() {
             var languageList = document.getElementById("languageList");
