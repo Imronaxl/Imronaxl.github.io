@@ -9,17 +9,15 @@
     <title>Архив задач</title>
     <link rel="icon" href="icons/fire_icon.jpeg" type="image/jpeg">
     <style>
-        body {
+       body {
             font-family: 'Times New Roman', Times, serif;
             background-image: url('icons/icon2.jpg');
-            background-size: cover; 
-            margin: 0;
-            padding: 0;
+            background-size: cover;
             background-color: #0a0a0a;
-            color: #fff;
+            color: #ccc; /* Улучшенный контраст */
             overflow-x: hidden;
         }
-       
+
         
         header {
             padding: 20px;
@@ -27,8 +25,12 @@
             position: relative;
         }
 
+        
 
         .container {
+            font-family: Verdana, sans-serif;
+            font-size:16px;
+
             max-width: 1000px; /* Ширина контейнера */
             margin: auto; 
             padding: 10px;
@@ -44,18 +46,19 @@
             width: calc(33.33% - 20px); /* Уменьшим ширину задачи для того, чтобы поместилось по три задачи на одну строку */
             margin-right: 20px;
             margin-bottom: 20px;
-            background-color: rgba(17, 17, 17, 0.3);
+            background-color: rgb(0, 0, 0);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: 0.3s;
-            border: 2px solid #000285;
+            border: 2px solid #392f2f;
             display: flex;
             flex-direction: column;
+            
         }
 
         .task:hover {
-            border-color: #063395;
+            border-color: #7a71f7;
             transform: translateY(-5px);
         }
 
@@ -105,9 +108,6 @@
 
             transform: scale(1.05);
         }
-    
-     
-
 
     </style>
 </head>
@@ -150,64 +150,95 @@
         </a>
         <a href="#" class="about-btn menu-item" onclick="openAbout()">
             <img src="icons/icon15.png" alt="Competition Icon" style="width: 30px; height: 25px;">
-
             О нас
         </a>
-
         <a href="#" class="logout-btn menu-item" onclick="logout()">
             <img src="icons/icon12.png" alt="Competition Icon">
-            Выход
+            Выхода
         </a>
     </div>
+    <ul id="languageList" class="language-list">
+        <li onclick="changeLanguage('english')">
+            English
+            <img src="icons/english_flag.png" alt="English Flag">
+        </li>
+        <li onclick="changeLanguage('russian')">
+            Русский
+            <img src="icons/russian_flag.png" alt="Russian Flag">
+        </li>
+        <li onclick="changeLanguage('tajik')">
+            Тоҷикӣ
+            <img src="icons/tajik_flag.png" alt="Tajik Flag">
+        </li>
+    </ul>
     <header>
-    <div class="menu" onclick="toggleNav()">
-        <img src="icons/icon14.png" alt="Открыть меню" style="width: 40px; height: 40px;">
-        
-    </div>
-    <div id="aboutModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAbout()">&times;</span>
-            <h2>О нас</h2>
-            <p>Приветствуем вас в мире Tajik Fire - месте, где идеи превращаются в реальность, а навыки взлетают к новым высотам. Мы не просто платформа для соревнований, мы сообщество людей, которые разделяют страсть к программированию и стремятся к развитию.</p>
-            <img src="icons/gif1.gif" alt="Coding Sticker" style="width: 100px; height: auto;">
-            <p>Наша миссия - вдохновлять и обучать, открывать новые горизонты и помогать вам достичь своих целей. Мы верим в силу знаний и в том, что каждый может стать лучше, если у него есть поддержка и ресурсы.</p>
-            <img src="https://media.giphy.com/media/1qXbl46DvyO4o8kNIr/giphy.gif" alt="Rocket Sticker" style="width: 100px; height: auto;">
-            <p>Если у вас есть идеи, вопросы или предложения, не стесняйтесь обращаться к нам. Мы здесь, чтобы помочь вам в каждом шаге вашего пути.</p>
-            <img src="icons/gif.gif" alt="Support Sticker" style="width: 250px; height: 250px;">
-            <p>Присоединяйтесь к Tajik Fire - месте, где рождаются идеи и совершаются открытия!</p>
-            <ul>
-                <li>Телефон техподдержки: +992900085961</li>
-                <li>Электронная почта: gimron34@gmail.com</li>
-            </ul>
-            <!-- <p>Также, если вам хочется поддержать нас, вы можете это сделать, оплатив нам  через номер карты:</p>
-            <p>Номер карты для оплаты: **** **** **** **** (подставьте номер карты)</p> -->
+        <div class="menu" onclick="toggleNav()">
+            <img src="icons/icon14.png" alt="Открыть меню" style="width: 40px; height: 40px;">
         </div>
-    </div>
-</header>   
+        <div id="aboutModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAbout()">&times;</span>
+                <h2>О нас</h2>
+                <p>Приветствуем вас в мире Tajik Fire - месте, где идеи превращаются в реальность, а навыки взлетают к новым высотам. Мы не просто платформа для соревнований, мы сообщество людей, которые разделяют страсть к программированию и стремятся к развитию.</p>
+                <p>Наша миссия - вдохновлять и обучать, открывать новые горизонты и помогать вам достичь своих целей. Мы верим в силу знаний и в том, что каждый может стать лучше, если у него есть поддержка и ресурсы.</p>
+                <p>Если у вас есть идеи, вопросы или предложения, не стесняйтесь обращаться к нам. Мы здесь, чтобы помочь вам в каждом шаге вашего пути.</p>
+                <p>Присоединяйтесь к Tajik Fire - месте, где рождаются идеи и совершаются открытия!</p>
+                <ul>
+                    <li>Телефон техподдержки: +992900085961</li>
+                    <li>Электронная почта: gimron34@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
     <h1 style="text-align: center; color: white;">Архив</h1>
     <div id="userLogin" class="user-login"></div>
+    <button onclick="showLanguagePopup()" class="language-btn">Выбрать язык</button>
 
     <div class="container">
         <div class="task-column">
-        <div class="task">
-            <h2>Задача 1</h2>
-            <p> A + B = ? </p>
-            <a href="Task1.html" target="_self" class="read-more">Открыть задачу</a>
+            <div class="task">
+                <h2>Задача 1</h2>
+                <p> A + B = ? </p>
+                <a href="Task1.html" target="_self" class="read-more">Открыть задачу</a>
+            </div>
+            <div class="task">
+                <h2>Задача 2</h2>
+                <p>День рождение Илхома</p>
+                <a href="Task2.html" target="_self" class="read-more">Открыть задачу</a>
+            </div>
+            <div class="task">
+                <h2>Задача 3</h2>
+                <p>Полёт Мухаммада</p>
+                <a href="Task3.html" target="_self" class="read-more">Открыть задачу</a>
+            </div>
+            <div class="task">
+                <h2>Задача 4</h2>
+                <p>Багаж Мухаммада</p>
+                <a href="Task4.html" target="_self" class="read-more">Открыть задачу</a>
+            </div>
         </div>
-        <div class="task">
-            <h2>Задача 2</h2>
-            <p>Описание задачи 2.</p>
-            <a href="https://example.com/task2-details" target="_blank" class="read-more">Открыть задачу</a>
-        </div>
-        <div class="task">
-            <h2>Задача 3</h2>
-            <p>Описание задачи 2.</p>
-            <a href="https://example.com/task2-details" target="_blank" class="read-more">Открыть задачу</a>
-        </div>
-      
-        
-    </div>
     </div>
 
-      </body>
+
+</body>
+<script>
+     function changeLanguage(language) {
+        var redirectUrl;
+        switch (language) {
+            case 'english':
+                redirectUrl = 'index2.html';
+                break;
+            case 'russian':
+                redirectUrl = 'index.html';
+                break;
+            case 'tajik':
+                redirectUrl = 'index1.html';
+                break;
+            default:
+                redirectUrl = 'index.html';
+        }
+        window.location.href = redirectUrl;
+    }
+</script>
 </html>
