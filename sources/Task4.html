@@ -232,13 +232,13 @@
             </li>
         </ul>
     </header>
-    <h1 style="text-align: center; color: white;">День рождение Илхома!</h1>
+    <h1 style="text-align: center; color: white;">Багаж Мухаммада</h1>
     <div id="userLogin" class="user-login"></div>
     <button onclick="showLanguagePopup()" class="language-btn">Выбрать язык</button>
 
     <div class="container">
         <div class="task-details">
-            <h2>Задача 2</h2>
+            <h2>Задача 4</h2>
             <pr class="task-details">
             </div>
             </pr>
@@ -246,23 +246,11 @@
             <h3>Пример: <br>
                 <button onclick="copyToClipboard('input-data')">Копировать входные данные</button>
                 <pre id="input-data">
-10
-1 61 126 217 2876 6127 39162 98126 712687 1000000000
-10
-100 6127 1 61 200 -10000 1 217 10000 1000000000
+2 3 10
                 </pre>
                 <button onclick="copyToClipboard('output-data')">Копировать выходные данные</button>
                 <pre id="output-data">
-NO
-YES
-YES
-YES
-NO
-NO
-YES
-YES
-NO
-YES
+9
                 </pre>
             </h3>
         </div>
@@ -300,7 +288,7 @@ YES
 
         var formData = new FormData();
         formData.append('file', document.getElementById('file-input').files[0]);
-        formData.append('x', 1);
+        formData.append('x', 3);
         formData.append('login', userLogin);
 
         document.getElementById('upload-button').classList.add('loading');
@@ -353,7 +341,7 @@ YES
 
         }
         var langg = 1;
-        var number_task = 2; 
+        var number_task = 4; 
         var formData = new FormData();
         formData.append('langg', langg);
         formData.append('number_task', number_task);

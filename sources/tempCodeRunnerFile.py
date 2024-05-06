@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.static_folder = 'static'
 name_task = dict()
 name_task[0] = 'A + B = ?'
-name_task[1] = 'Илхом ?'
+name_task[1] = 'День Рождения у Илхома ?'
 CORS(app)
 def run_cpp_code(cpp_file, cpp_file_o, cpp_file_ans):
   #  cpp_file = '/home/imeon/Project_Olympiad/CheckProblems/Debugging/zapuskator.cpp'
