@@ -168,35 +168,35 @@
         <div id="progressText">0%</div>
     </div>
     <div id="mySidebar" class="sidebar">
-        <a href="my_profile.html" class="menu-item">
-            <img src="icons/icon8.png" alt="Competition Icon">
-            Мой профиль
-        </a>
-        <a href="compete.html" class="menu-item">
-            <img src="icons/icon7.png" alt="Competition Icon">
-            Соревнование
-        </a>
-        <a href="index.html" class="menu-item">
-            <img src="icons/icon9.png" alt="Competition Icon">
-            Архив задач
-        </a>
-        <a href="news.html" class="menu-item">
-            <img src="icons/icon10.png" alt="Competition Icon"  style="width: 28px; height: 28px;">
-            Новости
-        </a>
-        <a href="my_submit.html" class="menu-item">
-            <img src="icons/icon11.png" alt="Competition Icon">
-            Мои посылки
-        </a>
-        <a href="#" class="about-btn menu-item" onclick="openAbout()">
-            <img src="icons/icon15.png" alt="Competition Icon" style="width: 30px; height: 25px;">
-            О нас
-        </a>
-        <a href="#" class="logout-btn menu-item" onclick="logout()">
-            <img src="icons/icon12.png" alt="Competition Icon">
-            Выход
-        </a>
-    </div>
+        <a href="my_profile1.html" class="menu-item">
+                <img src="icons/icon8.png" alt="Competition Icon">
+                Ҳуҷраи шахси
+            </a>
+            <a href="compete1.html" class="menu-item">
+                <img src="icons/icon7.png" alt="Competition Icon">
+                Мусобиқаҳо
+            </a>
+            <a href="index1.html" class="menu-item">
+                <img src="icons/icon9.png" alt="Competition Icon">
+                Маҷмӯи Масъалаҳо
+            </a>
+            <a href="news1.html" class="menu-item">
+                <img src="icons/icon10.png" alt="Competition Icon"  style="width: 28px; height: 28px;">
+                Хабарҳо
+            </a>
+            <a href="my_submit1.html" class="menu-item">
+                <img src="icons/icon11.png" alt="Competition Icon">
+                Ирсолҳои ман
+            </a>
+            <a href="#" class="about-btn menu-item" onclick="openAbout()">
+                <img src="icons/icon15.png" alt="Competition Icon" style="width: 30px; height: 25px;">
+                Дар бораи мо
+            </a>
+            <a href="#" class="logout-btn menu-item" onclick="logout()">
+                <img src="icons/icon12.png" alt="Competition Icon">
+                Баромад
+            </a>
+        </div>
     <header>
         <div class="menu" onclick="toggleNav()">
             <img src="icons/icon14.png" alt="Открыть меню" style="width: 40px; height: 40px;">
@@ -232,38 +232,38 @@
             </li>
         </ul>
     </header>
-    <h1 style="text-align: center; color: white;">Багаж Мухаммада</h1>
+    <h1 style="text-align: center; color: white;">Ҷуздони Мухаммада</h1>
     <div id="userLogin" class="user-login"></div>
-    <button onclick="showLanguagePopup()" class="language-btn">Выбрать язык</button>
+    <button onclick="showLanguagePopup()" class="language-btn">Интихоби забон</button>
 
     <div class="container">
         <div class="task-details">
-            <h2>Задача 4</h2>
+            <h2>Масъалаи 4</h2>
             <pr class="task-details">
             </div>
             </pr>
             <div class="task-details">
-            <h3>Пример: <br>
-                <button onclick="copyToClipboard('input-data')">Копировать входные данные</button>
+            <h3>Намуна: <br>
+                <button onclick="copyToClipboard('input-data')">нусхабардории маълумоти воридотӣ</button>
                 <pre id="input-data">
 2 3 10
                 </pre>
-                <button onclick="copyToClipboard('output-data')">Копировать выходные данные</button>
+                <button onclick="copyToClipboard('output-data')">Нусхабардорӣ маълумоти баромад</button>
                 <pre id="output-data">
 9
                 </pre>
             </h3>
         </div>
-        <h1>Отправка файла</h1>
+        <h1>Фиристодани файл</h1>
         <form id="upload-form" enctype="multipart/form-data">
             <label for="file-input" class="file-upload-label" id="file-label">
                 <img src="icons/icon16.png" alt="Выбрать файл" style="width: 20px; vertical-align: middle;">
-                Выбрать файл
+                Интихоби файл
             </label>
             <input type="file" id="file-input" name="file" style="display: none;">
             
             <input type="file" id="file-input" name="file" style="display: none;">
-            <button type="submit" id="upload-button">Отправить файл<span class="spinner"></span></button>
+            <button type="submit" id="upload-button">Фиристодани файл<span class="spinner"></span></button>
             <div id="result"></div>
         </form>
         
@@ -340,7 +340,7 @@
             }, 2000);
 
         }
-        var langg = 1;
+        var langg = 2;
         var number_task = 4; 
         var formData = new FormData();
         formData.append('langg', langg);
