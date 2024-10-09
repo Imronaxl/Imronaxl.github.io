@@ -119,7 +119,7 @@ cat /tmp/lab0_errors.log
     вывод:
         find: lab0/doduo4/bulbasaur: Permission denied
         find: lab0/mantine6/flygon: Permission denied
-ls -lR lab0 2>&1 | grep -v '^total' | sort | tail -n 3
+ls -lR  2>&1 | grep -v '^total' | sort | tail -n 3
     вывод:
         lrwxr-xr-x  1 s465676 studs  12 25 сент. 21:13 Copy_81 -> lab0/golurk6
         ls: lab0/doduo4/bulbasaur: Permission denied
@@ -132,7 +132,7 @@ ls -1 golurk6 2>/tmp/golurk6_errors.log | sort
         magcargo
         magcargoshroomish
         starly
-ls -lR lab0 2>&1 | grep 'lab0/f' | sort -k6,7
+ls -lR 2>&1 | grep '^f' | sort -k6,7
     вывод:
         ls: lab0/doduo4/bulbasaur: Permission denied
         ls: lab0/mantine6/flygon: Permission  denied
