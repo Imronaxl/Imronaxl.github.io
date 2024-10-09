@@ -148,8 +148,8 @@ rm lab0/graveler5
     решение:
         chmod 777 lab0/graveler5
 rm lab0/golurk6/klinklang
-rm lab0/golurk6/magcargoshroomi*
-rm lab0/mantine6/cascoonshroomi*
+rm lab0/golurk6/magcargoshroomi
+rm lab0/mantine6/cascoonshroomi
     ошибка права доступа:
         override r--r----- s465676/studs uarch for lab0/mantine6/cascoonshroomish?
     решение:
