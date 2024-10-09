@@ -110,7 +110,7 @@ ls -lSr mantine6
     -rwxrwxrwx  1 s465676 studs 202 25 сент. 19:07 forretress
 cd ..
 
-find lab0 -type f -name '*e' -exec cat {} 2>> /tmp/lab0_errors.log \; | nl | sort > /tmp/lab0_sorted_output.txt
+ls -R lab0 | grep 'e$' | xargs cat 2>> /tmp/lab0_errors.log | nl | sort
 cat /tmp/lab0_sorted_output.txt
     вывод:
      1	Живет Cave
@@ -132,10 +132,10 @@ ls -1 golurk6 2>/tmp/golurk6_errors.log | sort
         magcargo
         magcargoshroomish
         starly
-find lab0 -name 'f*' -exec ls -lu {} + 2>&1 | sort -k6,7
+ls -lR lab0 2>&1 | grep 'lab0/f' | sort -k6,7
     вывод:
-        find: lab0/doduo4/bulbasaur: Permission denied
-        find: lab0/mantine6/flygon: Permission  denied
+        ls: lab0/doduo4/bulbasaur: Permission denied
+        ls: lab0/mantine6/flygon: Permission  denied
         lab0/mantine6/flygon:
         ls: lab0/mantine6/flygon: Permission denied
         total 0
