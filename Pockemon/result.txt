@@ -1,7 +1,4 @@
-javac -classpath ".:Pokemon.jar" Main.java//Compile
-Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1G -XX:MaxMetaspaceSize=128m
-java -classpath ".:Pokemon.jar" Main //Start Java - code
-Picked up _JAVA_OPTIONS: -XX:MaxHeapSize=1G -XX:MaxMetaspaceSize=128m
+java -jar Main.jar
 Drampa Чужой из команды черных вступает в бой!
 Deino Хищник из команды белых вступает в бой!
 Deino Хищник использует Dark Pulse. 
