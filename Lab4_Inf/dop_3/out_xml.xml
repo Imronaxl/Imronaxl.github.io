@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<schedule>
+  <schedule>
+    <Group>P3132</Group>
+    <Day>Понедельник</Day>
+    <Lesson>1</Lesson>
+    <Name>Информатика</Name>
+    <Time> 11:40-13:10</Time>
+    <Teacher>Ю.А. Белокон</Teacher>
+    <Hall>Ауд. 2308</Hall>
+    <Place>Кронверкский пр., д.49, лит.А</Place>
+  </schedule>
+  <schedule>
+    <Group>P3132</Group>
+    <Day>Понедельник</Day>
+    <Lesson>2</Lesson>
+    <Name>Информатика</Name>
+    <Time>  13:30-15:00</Time>
+    <Teacher>Ю.А. Белокон</Teacher>
+    <Hall>Ауд. 2308</Hall>
+    <Place>Кронверкский пр., д.49, лит.А</Place>
+  </schedule>
+  <schedule>
+    <Group>P3132</Group>
+    <Day>Четверг</Day>
+    <Lesson>1</Lesson>
+    <Name>Социальная история России</Name>
+    <Time> 11:40-13:10</Time>
+    <Teacher> Кудина Юлия Игоревна</Teacher>
+    <Hall>Ауд. 2414</Hall>
+    <Place>Кронверкский пр. д.49, лит.А</Place>
+  </schedule>
+  <schedule>
+    <Group>P3132</Group>
+    <Day>Четверг</Day>
+    <Lesson>2</Lesson>
+    <Name>Социальная история России</Name>
+    <Time>16:50-20:00</Time>
+    <Teacher> Мунжукова Светлана Игоревна</Teacher>
+    <Hall> Ауд. 1404</Hall>
+    <Place> Кронверкский пр., д.49, лит.А</Place>
+  </schedule>
+</schedule>
